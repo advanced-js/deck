@@ -533,6 +533,13 @@ assert(tony.password === undefined, "private properties aren't accessible");
 
 assert(tony.login('foo') === false, "methods can access private vars");
 assert(tony.login('12345') === true, "methods can access private vars, again");
+
+// EXERCISE:
+// create a Backbone-like model that has get() and set() methods that work for arbitrary attributes, e.g.
+//
+//   var bob = new User();
+//   bob.set('phone', '123-456-7890');
+//   var bobsPhone = bob.get('phone');
 </pre></dd>
 <dt>namespace.js</dt>
 <dd><pre>// like Java, but hackier!
@@ -550,7 +557,7 @@ assert(bob instanceof Object, "Objects under a namespace are just Objects");
 // * helps to organize
 // * doesn't crowd the global namespace
 
-// TASK: write a namespace() function that takes a period-delimited string, e.g.
+// EXERCISE: write a namespace() function that takes a period-delimited string, e.g.
 //   namespace('app.models');
 </pre></dd>
 <dt>singleton.js</dt>
