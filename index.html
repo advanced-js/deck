@@ -1,0 +1,606 @@
+<!-- saved from url=(0028)http://ejohn.org/apps/learn/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Advanced Javascript - Aidan Feldman</title>
+<style>
+body { background: #222; color: #FFF; font-family: Helvetica, Arial; font-size: 16px; }
+textarea, #pre { font-size: 20px; width: 100%; height: 425px; font-family: Monaco, Courier New; background: #000; color: #FFF; overflow: auto; margin: 0; border: 0; padding: 0 0 0 5px; }
+#container, #pre { position: absolute; top: 30px; width: 100%; }
+textarea { z-index: 1; }
+#pre { z-index: 2; }
+#area { position: absolute; top: 30px; left: 1%; width: 98%; }
+h3 { font-size: 24px; }
+h3.large { position: absolute; top: 45%; left: 0; width: 100%; font-size: 48px; text-align: center; }
+div.buttons { position: absolute; top: 0px; right: 5px; }
+input.run { font-weight: bold; }
+a { color: #EEE; text-decoration: none; border-bottom: 1px solid #EEE; }
+.FAIL b, .ERROR b { color: red; /* #990066 */ }
+.PASS b { color: #73C836; }
+#results { line-height: 1.3em; font-size: 18px; background: #222; z-index: 10; }
+</style>
+<link rel="stylesheet" href="vendor/recipes.css">
+<script src="vendor/jquery.js"></script>
+<script src="vendor/underscore.js"></script>
+<script src="vendor/jquery.chili.js"></script>
+<script src="vendor/recipes.js"></script>
+<script>
+jQuery(document).ready(function(){
+	jQuery("dl").hide();
+
+	jQuery("form").submit(function(){
+		jQuery("#results").empty();
+
+		try {
+			(new Function( jQuery("#code").val() ))();
+		} catch(e){
+			error(e.message);
+		}
+
+		for ( var item in window ) {
+			if ( !stasis[item] ) {
+				window[item] = undefined;
+				delete window[item];
+			}
+		}
+		return false;
+	});
+
+	jQuery("#code").keydown(function(e){
+		if ( this.setSelectionRange ) {
+			var start = this.selectionStart, val = this.value;
+
+			if ( e.keyCode == 13 ) {
+				var match = val.substring(0, start).match(/(^|\n)([ \t]*)([^\n]*)$/);
+				if ( match ) {
+					var spaces = match[2], length = spaces.length + 1;
+					this.value = val.substring(0, start) + "\n" + spaces + val.substr(this.selectionEnd);
+					this.setSelectionRange(start + length, start + length);
+					this.focus();
+					return false;
+				}
+			} else if ( e.keyCode == 8 ) {
+				if ( val.substring(start - 2, start) == "  " ) {
+					this.value = val.substring(0, start - 2) + val.substr(this.selectionEnd);
+					this.setSelectionRange(start - 2, start - 2);
+					this.focus();
+					return false;
+				}
+			} else if ( e.keyCode == 9 ) {
+				this.value = val.substring(0, start) + "  " + val.substr(this.selectionEnd);
+				this.setSelectionRange(start + 2, start + 2);
+				this.focus();
+				return false;
+			}
+		}
+	});
+
+	jQuery("#pre").dblclick(function(){
+		jQuery("#pre").hide();
+		jQuery("#code").focus();
+	});
+
+	jQuery("#prev").click(function(){
+		pos--;
+		loadSample();
+	});
+
+	jQuery("#next").click(function(){
+		pos++;
+		loadSample();
+	});
+
+	var stasis = {};
+	for ( var item in window ) {
+		stasis[item] = true;
+	}
+
+	var pos;
+
+	if ( location.hash ) {
+		pos = parseInt(location.hash.substr(1)) - 1;
+		loadSample();
+	} else {
+		showTOC();
+	}
+	
+	function showTOC(){
+		jQuery("#pre").empty();
+		jQuery("h3").removeClass("large").html("Advanced Javascript - Aidan Feldman");
+		jQuery("#pre, #code").height(425).show();
+		
+		jQuery("dd:empty").prev("dt").each(function(i){
+			var dt = jQuery("dt").index(this);
+			jQuery("<a href='#" + (dt+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
+				pos = dt;
+				loadSample();
+				return false;
+			}).appendTo("#pre");
+		});
+		
+		jQuery("div.buttons").hide();
+	}
+
+	function loadSample(){
+		jQuery("div.buttons").show();
+		
+		var code = jQuery("#code");
+
+		var source = (jQuery("dd").eq(pos).find("pre").html() || "")
+		                        .replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
+
+		if ( !source ) {
+			jQuery("h3").addClass("large");
+			jQuery("#pre, #code, #run, #cite").hide();
+		} else {
+			jQuery("h3").removeClass("large");
+			jQuery("#pre, #code, #cite").show();
+			
+			if ( source.match(/assert\(|log\(|error\(/) )
+				jQuery("#run").show();
+			else
+				jQuery("#run").hide();
+		}
+
+		jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
+		code.val( source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">") );
+		jQuery("#pre").html( source ).chili();
+		jQuery("#results").empty();
+
+		code.add("#pre").height(275)[0];
+
+		if ( code[0].scrollHeight > 275 )
+			code.add("#pre").height( code[0].scrollHeight + 5 );
+
+		var last = jQuery("dt").length - 1;
+
+		if ( pos == 0 )
+			jQuery("#prev").css("visibility", "hidden");
+		if ( pos > 0 )
+			jQuery("#prev").css("visibility", "visible");
+
+		if ( pos == last )
+			jQuery("#next").css("visibility", "hidden");
+		if ( pos < last )
+			jQuery("#next").css("visibility", "visible");
+
+		window.location.hash = pos + 1;
+	}
+	
+	setInterval(function(){
+		if ( location.hash != ("#" + (pos + 1)) ) {
+			var num = parseInt(location.hash.substr(1)) - 1;
+			if ( isNaN(num) ) {
+				if ( jQuery("div.buttons").is(":visible") ) {
+					showTOC();
+				}
+			} else {
+				pos = num;
+				loadSample();
+			}
+		}
+	}, 100);
+});
+</script>
+<script>
+function assert(pass, msg){
+  var type = pass ? "PASS" : "FAIL";
+  jQuery("#results").append("<li class='" + type + "'><b>" + type + "</b> " + msg + "</li>");
+}
+function error(msg){
+  jQuery("#results").append("<li class='ERROR'><b>ERROR</b> " + msg + "</li>");
+}
+function log(){
+  var msg = "";
+  for ( var i = 0; i < arguments.length; i++ ) {
+    msg += " " + arguments[i];
+  }
+  jQuery("#results").append("<li class='LOG'><b>LOG</b> " + msg + "</li>");
+}
+var deepEqual = _.isEqual;
+</script>
+</head>
+<body>
+<h3 class="">Advanced Javascript - Aidan Feldman</h3>
+<div id="area">
+<pre id="pre" class="javascript" style="height: 425px; ">
+  <a href="#1">1) Start</a>
+</a></pre>
+<form id="form">
+<div class="buttons" style="display: none; ">
+<input type="submit" value="Run" class="run" id="run">
+<input type="button" id="prev" value="<< Prev">
+<input type="button" id="next" value="Next >>">
+</div>
+<div id="container">
+	<textarea id="code" wrap="off" style="height: 425px; "></textarea>
+	<ol id="results"></ol>
+	<p id="cite">Template blatantly stolen from <a href="http://ejohn.org/apps/learn">John Resig</a>.</p>
+</div>
+</form>
+</div>
+<dl style="display: none; ">
+<dt>Start</dt>
+<dd></dd>
+<dt>array_as_object.js</dt>
+<dd><pre>var myAry = [
+  'foo',
+  'bar',
+  'baz'
+];
+
+assert(myAry[0] === 'foo', "access with number");
+assert(myAry['0'] === 'foo', "access with string");
+
+assert(typeof myAry === 'object', "it's an object");
+
+myAry.newProp = "It's an object!";
+assert(myAry.newProp === "It's an object!", "assigning arbitrary properties");
+assert(myAry[0] === 'foo', "array access still works");
+</pre></dd>
+<dt>pass_by_reference.js</dt>
+<dd><pre>function increment(val){
+  val += 1;
+  return val;
+}
+
+var counter = 0;
+var incVal = increment(counter);
+assert(counter === 0, "primitives are pass-by-value");
+assert(incVal === 1, "returns incremented value");
+
+
+function reset(statusObj){
+  statusObj.counter = 0;
+}
+
+var status = {
+  counter: 6
+};
+reset(status);
+assert(status.counter === 0, "objects are pass-by-reference");
+</pre></dd>
+<dt>self_executing_functions.js</dt>
+<dd><pre>// Fake jQuery: aQuery!
+
+var aQueryCalled = false;
+
+var aQuery = function(){
+  aQueryCalled = true;
+};
+
+var $ = function(){
+  throw new Error("outer $() should not be called");
+};
+
+// this technique is used for jQuery plugins, where there might be other plugins that use the dollar sign variable
+(function($){
+  // $ is assigned to the argument passed in, which supercedes the local variable above
+  $('foo');
+  assert(aQueryCalled, "jQuery() should have been called");
+})(aQuery);
+</pre></dd>
+<dt>this.js</dt>
+<dd><pre>var global = this; // 'window' in the browser
+
+
+function fn1(){
+  return this;
+}
+
+assert(fn1() === global, "functions defined globally have global context");
+assert(global.fn1() === global, "functions defined globally are available on the global object");
+
+
+// effectively the same as above
+global.fn2 = function(){
+  return this;
+};
+
+assert(global.fn2() === global, "functions defined on the glboal object have global context");
+assert(fn2() === global, "the global object is inferred when no parent object is specified");
+
+
+var obj = {
+  fn3: function(){
+    return this;
+  }
+};
+
+assert(obj.fn3() === obj, "functions defined on an object have the context of that object");
+
+
+var fn3 = obj.fn3;
+assert(fn3() === global, "context is dependent on where the function is called, not where it's defined");
+
+assert(fn3.call(obj) === obj, "applied context modifies 'this'");
+</pre></dd>
+<dt>apply_context.js</dt>
+<dd><pre>var myVariable = "I'm global!";
+
+function printMyVariable(){
+  return this.myVariable;
+}
+
+// without additional arguments, apply() vs. call() are interchangeable
+assert(printMyVariable() === "I'm global!", "without specifying context");
+assert(printMyVariable.apply(null) === "I'm global!", "using 'null' context");
+assert(printMyVariable.apply(undefined) === "I'm global!", "using 'undefined' context");
+assert(printMyVariable.apply(this) === "I'm global!", "using 'this' context");
+
+assert(printMyVariable.apply({ myVariable: "I'm local!" }) === "I'm local!", "using object as context");
+</pre></dd>
+<dt>call_vs_apply.js</dt>
+<dd><pre>function title(first, last){
+  return first + ' ' + last + ', M.D.';
+}
+
+assert(title.call(this, 'Michaela', 'Quinn') === 'Michaela Quinn, M.D.', "call() takes individual arguments after the context");
+assert(title.apply(this, ['Michaela', 'Quinn']) === 'Michaela Quinn, M.D.', "apply() takes individual arguments after the context");
+
+// easy to remember - 'a' (in 'apply') is for Array
+</pre></dd>
+<dt>arguments.js</dt>
+<dd><pre>function echo(/* arguments */){
+  assert(!(arguments instanceof Array), "'arguments' isn't really an array");
+  assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
+  
+  // copy arguments over to an array
+  var list = [];
+  for (var i = 0; i < arguments.length; i++){
+    list[i] = arguments[i];
+  }
+
+  assert(list instanceof Array, "'list' is a real array");
+  assert(typeof list.join === 'function', "real arrays have join()");
+
+  return list.join(', ');
+}
+
+assert(echo('foo', 'bar', 'baz') === 'foo, bar, baz', "returns the concatenated list");
+assert(echo() === '', "'arguments' still defined when none are passed");
+</pre></dd>
+<dt>extend.js</dt>
+<dd><pre>function extend(dest /*, sources */){
+  var source, attr;
+  for (var i = 1; i < arguments.length; i++){
+    source = arguments[i];
+    for (attr in source){
+      dest[attr] = source[attr];
+    }
+  }
+}
+
+var obj1 = {
+  obj1Prop: true
+};
+
+var obj2 = {
+  obj2Prop: true
+};
+
+extend(obj1, obj2);
+
+assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
+assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
+</pre></dd>
+<dt>event_loop.js</dt>
+<dd><pre>// statements execute in order, except when there is a call that is asynchronous
+
+var order = [];
+
+order.push('before');
+
+setTimeout(function(){
+  order.push('within');
+
+  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
+}, 0);
+
+order.push('after');
+
+// procedural statements executed in order, and async functions are queued in event loop
+</pre></dd>
+<dt>callbacks.js</dt>
+<dd><pre>// fake jQuery
+var $ = {
+  get: function(url, callback){
+    // this is where the call to the server would happen
+
+    // fake it with a timeout
+    setTimeout(function(){
+      callback({ status: 'ok' });
+    }, 100);
+  }
+};
+
+var callbackCalled = false;
+$.get('http://foo.com/bar.json', function(data){
+  callbackCalled = true;
+  assert(data.status === 'ok', "the callback receives the data");
+});
+
+assert(!callbackCalled, "callback doesn't exectute immediately");
+</pre></dd>
+<dt>object_literal.js</dt>
+<dd><pre>var person1 = {
+  first: 'Bob',
+  last: 'Hope'
+};
+var person2 = person1;
+
+person2.last = 'Marley';
+
+assert(person1.last === 'Marley', "the original object is changed");
+assert(person1 === person2, "they are the same object");
+</pre></dd>
+<dt>oop_basic.js</dt>
+<dd><pre>var Person = function(first, last){
+  this.first = first;
+  this.last = last;
+};
+
+var bob = new Person('Bob', 'Hope');
+var sally = new Person('Sally', 'Field');
+
+assert(bob.first === 'Bob', "the public properties are accessible");
+
+assert(bob !== sally, "two instances are not the same");
+
+assert(bob instanceof Person, "'new' creates instance");
+assert(bob instanceof Object, "it's an Object");
+</pre></dd>
+<dt>instance_vs_prototype.js</dt>
+<dd><pre>var Person = function(first, last){
+  this.first = first;
+  this.last = last;
+
+  this.fullName = function(){
+    return this.first + ' ' + this.last;
+  };
+};
+
+Person.prototype.title = function(){
+  return 'Mr. ' + this.fullName();
+};
+
+var bruce = new Person('Bruce', 'Wayne');
+var tony = new Person('Tony', 'Stark');
+
+assert(bruce.fullName() === 'Bruce Wayne', "correct fullName for bruce");
+assert(tony.fullName() === 'Tony Stark', "correct fullName for tony");
+
+assert(bruce.fullName !== tony.fullName, "functions created in the constructor are unique to each instance");
+
+assert(bruce.title() === 'Mr. Bruce Wayne', "correct title for bruce");
+assert(tony.title() === 'Mr. Tony Stark', "correct title for tony");
+
+assert(bruce.title === tony.title, "functions set on the prototype are shared by all instances");
+</pre></dd>
+<dt>oop_inheritance.js</dt>
+<dd><pre>var Vehicle = function(){};
+
+Vehicle.prototype.numWheels = function(){
+  return undefined;
+};
+
+var Car = function(){};
+// a bit of strange JS magic to inherit methods
+Car.prototype = new Vehicle();
+
+Car.prototype.numWheels = function(){
+  return 4;
+};
+
+var myVehicle = new Vehicle();
+var myCar = new Car();
+
+assert(myCar.numWheels() === 4, "subclass used its own function definition");
+assert(myVehicle.numWheels() === undefined, "superclass function wasn't overwritten");
+</pre></dd>
+<dt>oop_private.js</dt>
+<dd><pre>var User = function(username, pass){
+  var password = pass;
+  this.username = username;
+
+  this.login = function(pass){
+    return pass === password;
+  };
+};
+
+var tony = new User('tony', '12345');
+
+assert(tony.pass === undefined, "the args aren't accessible");
+assert(tony.password === undefined, "private properties aren't accessible");
+
+assert(tony.login('foo') === false, "methods can access private vars");
+assert(tony.login('12345') === true, "methods can access private vars, again");
+</pre></dd>
+<dt>singleton.js</dt>
+<dd><pre>// Fake jQuery
+// Usage:
+//   $('#mySelector') // element
+//   $.cacheLength() // int (number of selectors in cache)
+
+var $ = function(selector){
+  assert(this !== $, "'this' refers to the window/global");
+
+  // check if it's already cached
+  var elt = $._elementCache[selector];
+  if (!elt){
+    elt = 'fakeElement'; // we would actually use document.getElementById(), etc.
+    $._elementCache[selector] = elt; // cache it
+    $._cacheSize++;
+  }
+  return elt;
+};
+
+// private variables - by convention, names start with underscore
+$._elementCache = {};
+$._cacheSize = 0;
+
+// public method
+$.cacheLength = function(){
+  assert(this === $, "'this' refers to the parent object, $");
+
+  return this._cacheSize;
+};
+
+
+assert(deepEqual($._elementCache, {}), "private variable '_elementCache' is accessible");
+assert($._cacheSize === 0, "private variable '_cacheSize' is accessible");
+assert($.cacheLength() === 0, "cache should be empty to start");
+
+var elt = $('#myDiv');
+
+assert($.cacheLength() === 1, "cache should be incremented after query");
+
+var sameElt = $('#myDiv');
+
+assert($.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+</pre></dd>
+<dt>module.js</dt>
+<dd><pre>// Fake jQuery
+// Usage:
+//   $('#mySelector') // element
+//   $.cacheLength() // int (number of selectors in cache)
+
+var $ = (function(){
+  // private variables
+  var elementCache = {},
+    cacheSize = 0;
+
+  var base = function(selector){
+    // check if it's already cached
+    var elt = elementCache[selector];
+    if (!elt){
+      elt = 'fakeElement'; // we would actually use document.getElementById(), etc.
+      elementCache[selector] = elt; // cache it
+      cacheSize++;
+    }
+    return elt;
+  };
+
+  base.cacheLength = function(){
+    return cacheSize;
+  };
+
+  // return public API as a function/object
+  return base;
+})();
+
+
+assert($.elementCache === undefined, "private variables should be undefined");
+assert($.cacheLength() === 0, "cache should be empty to start");
+
+var elt = $('#myDiv');
+
+assert($.cacheLength() === 1, "cache should be incremented after query");
+
+var sameElt = $('#myDiv');
+
+assert($.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+</pre></dd>
+
+</dl>
+
+
+</body></html>
