@@ -230,10 +230,11 @@ var deepEqual = _.isEqual;
 assert(myAry[0] === 'foo', "access with number");
 assert(myAry['0'] === 'foo', "access with string");
 
-assert(typeof myAry === 'object', "it's an object");
+assert(typeof {} === 'object', "an object is an Object");
+assert(typeof myAry === 'object', "so is an Array");
 
-myAry.newProp = "It's an object!";
-assert(myAry.newProp === "It's an object!", "assigning arbitrary properties");
+myAry.newProp = "A property on an array";
+assert(myAry.newProp === "A property on an array", "assigning arbitrary properties");
 assert(myAry[0] === 'foo', "array access still works");
 </pre></dd>
 <dt>pass_by_reference.js</dt>
@@ -279,7 +280,9 @@ var $ = function(){
 })(aQuery);
 </pre></dd>
 <dt>this.js</dt>
-<dd><pre>var global = this; // 'window' in the browser
+<dd><pre>// NOTE: broken in the deck
+
+var global = this; // 'window' in the browser
 
 
 function fn1(){
@@ -314,7 +317,9 @@ assert(fn3() === global, "context is dependent on where the function is called, 
 assert(fn3.call(obj) === obj, "applied context modifies 'this'");
 </pre></dd>
 <dt>apply_context.js</dt>
-<dd><pre>var myVariable = "I'm global!";
+<dd><pre>// NOTE: broken in the deck
+
+var myVariable = "I'm global!";
 
 function printMyVariable(){
   return this.myVariable;
@@ -339,7 +344,9 @@ assert(title.apply(this, ['Michaela', 'Quinn']) === 'Michaela Quinn, M.D.', "app
 // easy to remember - 'a' (in 'apply') is for Array
 </pre></dd>
 <dt>arguments.js</dt>
-<dd><pre>function echo(/* arguments */){
+<dd><pre>// print all the arguments given, separated with a comma and a space
+
+function echo(/* arguments */){
   assert(!(arguments instanceof Array), "'arguments' isn't really an array");
   assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
   
@@ -475,6 +482,19 @@ assert(tony.title() === 'Mr. Tony Stark', "correct title for tony");
 
 assert(bruce.title === tony.title, "functions set on the prototype are shared by all instances");
 </pre></dd>
+<dt>object_prototype.js</dt>
+<dd><pre>// remember array_as_object.js?
+// native types have prototypes, too
+
+var myAry = [];
+var myObj = {};
+
+assert(typeof myObj === 'object', "an object is an Object");
+assert(typeof myAry === 'object', "so is an Array");
+
+assert(Object.prototype.toString.apply(myObj) === '[object Object]', "Object's toString() acts differently than typeof");
+assert(Object.prototype.toString.apply(myAry) === '[object Array]', "it can distinguish an Array from an Object");
+</pre></dd>
 <dt>oop_inheritance.js</dt>
 <dd><pre>var Vehicle = function(){};
 
@@ -513,6 +533,25 @@ assert(tony.password === undefined, "private properties aren't accessible");
 
 assert(tony.login('foo') === false, "methods can access private vars");
 assert(tony.login('12345') === true, "methods can access private vars, again");
+</pre></dd>
+<dt>namespace.js</dt>
+<dd><pre>// like Java, but hackier!
+
+var app = {};
+app.models = {};
+app.models.User = function(){};
+app.models.Vehicle = function(){};
+
+var bob = new app.models.User();
+
+assert(bob instanceof Object, "Objects under a namespace are just Objects");
+
+// perks:
+// * helps to organize
+// * doesn't crowd the global namespace
+
+// TASK: write a namespace() function that takes a period-delimited string, e.g.
+//   namespace('app.models');
 </pre></dd>
 <dt>singleton.js</dt>
 <dd><pre>// Fake jQuery
