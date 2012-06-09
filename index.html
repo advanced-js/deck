@@ -548,11 +548,15 @@ assert(bob instanceof Object, "Objects under a namespace are just Objects");
 // string of arbitrary length and makes that namespace available globally,
 // without squashing any that were previously-defined.  For example:
 
+function namespace(path){
+  // ...
+}
+
 namespace('app.models');
-app.models.User = function(){};
+// app.models.User = function(){};
 
 namespace('app.views');
-assert(typeof app.models.User === 'function', "app.models.User should still be available");
+// assert(typeof app.models.User === 'function', "app.models.User should still be available");
 
 namespace('foo.lib.external');
 
@@ -667,6 +671,92 @@ assert($.cacheLength() === 1, "cache should be incremented after query");
 var sameElt = $('#myDiv');
 
 assert($.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+</pre></dd>
+<dt>class_vs_instance_methods.js</dt>
+<dd><pre>var Person = function(first, last){
+  this.first = first;
+  this.last = last;
+};
+
+// instance method
+Person.prototype.fullName = function(){
+  return this.first + ' ' + this.last;
+};
+
+// 'class' method
+Person.newKitten = function(first, parent1, parent2){
+  var last = parent1.last + '-' + parent2.last;
+  return new Person(first, last);
+};
+
+
+var alex = new Person('Alex', 'Bisker');
+var aidan = new Person('Aidan', 'Feldman');
+
+assert(alex.newKitten === undefined, "class method isn't available on an instance");
+assert(Person.fullName === undefined, "instance method isn't available on the class");
+
+var blondie = Person.newKitten('Blondie', alex, aidan);
+
+assert(blondie instanceof Person, "if you *treat* it like a child...");
+assert(blondie.fullName() === 'Blondie Bisker-Feldman', "assigns the name correctly");
+</pre></dd>
+<dt>hoisting.js</dt>
+<dd><pre>var fooNotDefined = false;
+try {
+  log(foo);
+} catch(e){
+  fooNotDefined = true;
+}
+
+assert(fooNotDefined, "non-declared variables will throw errors when called");
+assert(typeof foo === 'undefined', "non-declared variables have a typeof 'undefined'");
+
+assert(bar === undefined, "variable declarations get hoisted, but not the assignment");
+assert(typeof bar === 'undefined', "declared (but unset) variables *also* have typeof 'undefined'");
+
+var bar = 'bar';
+
+
+var bazNotDefined = false;
+try {
+  log(baz);
+} catch(e){
+  bazNotDefined = true;
+}
+
+assert(bazNotDefined, "hoisting only occurs within a single scope");
+
+function testFunc(){
+  var baz = 'baz';
+}
+</pre></dd>
+<dt>bind.js</dt>
+<dd><pre>var obj = {
+  first: 'Bob',
+  last: 'Hope',
+  fullName: function(){
+    return this.first + ' ' + this.last;
+  }
+};
+
+function bind(fn, context){
+  return function(){
+    return fn.apply(context, arguments);
+  };
+}
+
+// alias the function
+var unbound = obj.fullName;
+
+assert(unbound() === 'undefined undefined', "without binding, function calls use the calling scope");
+
+// bind it to the original context
+var bound = bind(unbound, obj);
+
+assert(typeof bound === 'function', "bind() returns a function");
+assert(bound() === 'Bob Hope', "bound function will use the specified context");
+assert(bound.call({}) === 'Bob Hope', "bound function can be called in any context");
 </pre></dd>
 
 </dl>
