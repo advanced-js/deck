@@ -8,6 +8,7 @@ var dir = 'examples/',
 var files = [
   'array_as_object.js',
   'pass_by_reference.js',
+  'countdown_exercise.js',
   'self_executing_functions.js', // re-referenced in modules
 
   'this.js',
@@ -15,6 +16,7 @@ var files = [
   'call_vs_apply.js',
 
   'arguments.js',
+  'echo_exercise.js',
   'extend.js',
 
   'event_loop.js',
@@ -35,10 +37,6 @@ var files = [
 
   'singleton.js',
   'module.js',
-
-
-  // day 2
-
 
   'class_vs_instance_methods.js',
   'hoisting.js',
