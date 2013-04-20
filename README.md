@@ -15,8 +15,9 @@ Learn best practices in JavaScript in this intensive, five-session course. Topic
 The following, or equivalent:
 
 * [INFO1-CE9755 - JavaScript](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9755) ([syllabus](https://github.com/afeld/advanced_js/blob/master/vendor/INFO1-CE9755%20JavaScript.pdf?raw=true))
-* Understanding of topics covered in Chapters 1-5 of [Eloquent JavaScript](http://eloquentjavascript.net/contents.html))
+* Understanding of variables, data types, control flow, and basic function usage in JavaScript - see [Beginner Materials](#beginner-materials)
 * Strong intermediate knowledge of HTML, and at least basics of CSS
+* Basic jQuery knowledge (DOM interaction) is a plus
 
 ## Course Overview
 
@@ -31,9 +32,27 @@ We will dive into the nuances of JavaScript, how prototypal inheritance compares
 
 Topics will be demonstrated through live-code examples, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
 
+## Homework
+
+### By class 2
+
+* Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+* Finish up and send `echo()` exercise
+* Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag
+
+```javascript
+// show/hide every 500ms
+jQuery('.myDiv').blink(500);
+```
+
+### By class 3
+
+* Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
+* Start on [project](#project)
+
 ## Project
 
-As homework, you are going to re-create the game Text Twist.  The original (http://games.yahoo.com/console/tx) is an old-school Java applet... we want to bring it into this decade and port to JavaScript.  Spend a bit of time playing it to get the feel (warning: addictive).  The requirements:
+As homework, you are going to re-create the game Text Twist.  The original (http://zone.msn.com/en/texttwist/, or [gameplay video](http://www.youtube.com/watch?v=qEfor-WdWTk&t=0m13s)) is an old-school Flash app... we want to bring it into this decade and port to JavaScript.  Spend a bit of time playing it to get the feel (warning: addictive).  The requirements:
 
 * two sets of letters (get a single set working first)
 * which set is used for each game (random vs. strict ordering): coder’s choice
@@ -71,6 +90,7 @@ You are welcome to publish on the web (think of your own name), but **please ema
 * [JavaScript Patterns](http://shichuan.github.com/javascript-patterns/) by @shichuan (thanks @iandrewfuchs)
 * [JavaScript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) by Stoyan Stephanov
 * [Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) by Addy Osmani
+* [Test-Driven JavaScript Development](http://www.amazon.com/Test-Driven-JavaScript-Development-Developers-Library/dp/0321683919) by Christian Johansen
 * [HTML5 Rocks slides](http://slides.html5rocks.com/)
 * [Classical Inheritance in JavaScript](http://www.crockford.com/javascript/inheritance.html) by Douglas Crockford
 * [Partial Application in JavaScript](http://benalman.com/news/2012/09/partial-application-in-javascript/) by Ben Alman (thanks [michaelBenin](https://github.com/michaelBenin))
@@ -81,7 +101,7 @@ You are welcome to publish on the web (think of your own name), but **please ema
 This class assumes you are confident with this material, but in case you need a brush-up...
 
 * [Codecademy](http://www.codecademy.com/tracks/javascript)
-* [Eloquent JavaScript](http://eloquentjavascript.net/index.html) by Marijn Haverbeke
+* [Eloquent JavaScript](http://eloquentjavascript.net/index.html) by Marijn Haverbeke, Chapters 1-5
 
 ### Other Lists
 
