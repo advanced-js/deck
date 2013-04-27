@@ -34,6 +34,8 @@ Topics will be demonstrated through live-code examples, available at [afeld.gith
 
 ## Homework
 
+Please email assignments by the start of the listed class to the instructor.  Send your assignments in an online sandbox (see [tools](https://github.com/afeld/advanced_js#tools)), or as a self-contained, runnable files within a ZIP as an attachment.
+
 ### By class 2
 
 * Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
@@ -50,15 +52,27 @@ jQuery('.myDiv').blink(500);
 * Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
 * Start on [project](#project)
 
+### By class 4
+
+* Finish Memory game, v1. ([example](http://www.zefrank.com/memory/))
+* Finish Text Twist, v1.
+
+### By class 5
+
+* Refactor Memory and Text Twist to use 'classes'.
+* ...
+
 ## Project
 
 As homework, you are going to re-create the game Text Twist.  The original (http://zone.msn.com/en/texttwist/, or [gameplay video](http://www.youtube.com/watch?v=qEfor-WdWTk&t=0m13s)) is an old-school Flash app... we want to bring it into this decade and port to JavaScript.  Spend a bit of time playing it to get the feel (warning: addictive).  The requirements:
 
-* two sets of letters (get a single set working first)
+* two sets of letters
+    * get a single set working first
+    * the dictionaries can be small - just enough to show that the game works
+    * should be trivial to add additional sets
 * which set is used for each game (random vs. strict ordering): coder’s choice
 * letters from set displayed in random order at the start of each game
-* should be trivial to add additional sets
-* game should be playable with keyboard only (you might try jQuery [keypress](http://api.jquery.com/keypress/)/[keydown](http://api.jquery.com/keydown/))
+* game should be playable with keyboard only (you might use jQuery [keypress](http://api.jquery.com/keypress/)/[keydown](http://api.jquery.com/keydown/))
 * display a player’s progress within a game, either similar to the Yahoo implementation (empty boxes on the left), or in a different creative way
 * a countdown showing the time remaining (time limit up to you)
 * a way to reset the game when it ends
