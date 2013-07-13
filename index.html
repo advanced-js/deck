@@ -249,6 +249,18 @@ assert(myAry.newProp === "A property on an array", "assigning arbitrary properti
 assert(myAry['newProp'] === "A property on an array", "can retrieve properties with square brackets");
 assert(myAry[0] === 'foo', "array access still works");
 </pre></dd>
+<dt>object_literal.js</dt>
+<dd><pre>var person1 = {
+  first: 'Bob',
+  last: 'Hope'
+};
+var person2 = person1;
+
+person2.last = 'Marley';
+
+assert(person1.last === 'Marley', "the original object is changed");
+assert(person1 === person2, "they are the same object");
+</pre></dd>
 <dt>pass_by_reference.js</dt>
 <dd><pre>function increment(val){
   val += 1;
@@ -270,6 +282,51 @@ var status = {
 };
 reset(status);
 assert(status.counter === 0, "objects are pass-by-reference");
+</pre></dd>
+<dt>arguments.js</dt>
+<dd><pre>function argumentative(){
+  assert(!(arguments instanceof Array), "'arguments' isn't really an array");
+  assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
+
+  assert(arguments.length === 3, "but 'arguments' do have 'length'");
+}
+
+argumentative('foo', 'bar', 'baz');
+</pre></dd>
+<dt>echo_exercise.js</dt>
+<dd><pre>// EXERCISE: print out each of the arguments given
+
+function echo(/* args */){
+  // ...
+}
+
+echo();
+echo('bla');
+echo('foo', 'bar', 'baz');
+</pre></dd>
+<dt>extend.js</dt>
+<dd><pre>function extend(dest /*, sources */){
+  var source, attr;
+  for (var i = 1; i < arguments.length; i++){
+    source = arguments[i];
+    for (attr in source){
+      dest[attr] = source[attr];
+    }
+  }
+}
+
+var obj1 = {
+  obj1Prop: true
+};
+
+var obj2 = {
+  obj2Prop: true
+};
+
+extend(obj1, obj2);
+
+assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
+assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
 </pre></dd>
 <dt>countdown_exercise.js</dt>
 <dd><pre>// EXERCISE: make a kitchen timer.  Write a countdown() function that takes a
@@ -300,6 +357,44 @@ countdown(10);
 // documentation:
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setInterval
+</pre></dd>
+<dt>event_loop.js</dt>
+<dd><pre>// statements execute in order, except when there is a call that is asynchronous
+
+var order = [];
+
+order.push('before');
+
+setTimeout(function(){
+  order.push('within');
+
+  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
+}, 0);
+
+order.push('after');
+
+// procedural statements executed in order, and async functions are queued in event loop
+</pre></dd>
+<dt>callbacks.js</dt>
+<dd><pre>// fake jQuery
+var $ = {
+  get: function(url, callback){
+    // this is where the call to the server would happen
+
+    // fake it with a timeout
+    setTimeout(function(){
+      callback({ status: 'ok' });
+    }, 100);
+  }
+};
+
+var callbackCalled = false;
+$.get('http://foo.com/bar.json', function(data){
+  callbackCalled = true;
+  assert(data.status === 'ok', "the callback receives the data");
+});
+
+assert(!callbackCalled, "callback doesn't exectute immediately");
 </pre></dd>
 <dt>self_executing_functions.js</dt>
 <dd><pre>// Fake jQuery: aQuery!
@@ -385,100 +480,33 @@ assert(title.apply(this, ['Michaela', 'Quinn']) === 'Michaela Quinn, M.D.', "app
 
 // easy to remember - 'a' (in 'apply') is for Array
 </pre></dd>
-<dt>arguments.js</dt>
-<dd><pre>function argumentative(){
-  assert(!(arguments instanceof Array), "'arguments' isn't really an array");
-  assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
-
-  assert(arguments.length === 3, "but 'arguments' do have 'length'");
-}
-
-argumentative('foo', 'bar', 'baz');
-</pre></dd>
-<dt>echo_exercise.js</dt>
-<dd><pre>// EXERCISE: print out each of the arguments given
-
-function echo(/* args */){
-  // ...
-}
-
-echo();
-echo('bla');
-echo('foo', 'bar', 'baz');
-</pre></dd>
-<dt>extend.js</dt>
-<dd><pre>function extend(dest /*, sources */){
-  var source, attr;
-  for (var i = 1; i < arguments.length; i++){
-    source = arguments[i];
-    for (attr in source){
-      dest[attr] = source[attr];
-    }
-  }
-}
-
-var obj1 = {
-  obj1Prop: true
-};
-
-var obj2 = {
-  obj2Prop: true
-};
-
-extend(obj1, obj2);
-
-assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
-assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
-</pre></dd>
-<dt>event_loop.js</dt>
-<dd><pre>// statements execute in order, except when there is a call that is asynchronous
-
-var order = [];
-
-order.push('before');
-
-setTimeout(function(){
-  order.push('within');
-
-  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
-}, 0);
-
-order.push('after');
-
-// procedural statements executed in order, and async functions are queued in event loop
-</pre></dd>
-<dt>callbacks.js</dt>
-<dd><pre>// fake jQuery
-var $ = {
-  get: function(url, callback){
-    // this is where the call to the server would happen
-
-    // fake it with a timeout
-    setTimeout(function(){
-      callback({ status: 'ok' });
-    }, 100);
-  }
-};
-
-var callbackCalled = false;
-$.get('http://foo.com/bar.json', function(data){
-  callbackCalled = true;
-  assert(data.status === 'ok', "the callback receives the data");
-});
-
-assert(!callbackCalled, "callback doesn't exectute immediately");
-</pre></dd>
-<dt>object_literal.js</dt>
-<dd><pre>var person1 = {
+<dt>bind.js</dt>
+<dd><pre>var obj = {
   first: 'Bob',
-  last: 'Hope'
+  last: 'Hope',
+  fullName: function(){
+    return this.first + ' ' + this.last;
+  }
 };
-var person2 = person1;
 
-person2.last = 'Marley';
+function bind(fn, context){
+  return function(){
+    return fn.apply(context, arguments);
+  };
+}
 
-assert(person1.last === 'Marley', "the original object is changed");
-assert(person1 === person2, "they are the same object");
+// alias the function
+var unbound = obj.fullName;
+
+assert(unbound() === 'undefined undefined', "without binding, function calls use the calling scope");
+
+// bind it to the original context
+var bound = bind(unbound, obj);
+
+assert(typeof bound === 'function', "bind() returns a function");
+assert(bound !== unbound, "returns a new function");
+assert(bound() === 'Bob Hope', "bound function will use the specified context");
+assert(bound.call({}) === 'Bob Hope', "bound function can be called in any context");
 </pre></dd>
 <dt>oop_basic.js</dt>
 <dd><pre>var Person = function(first, last){
@@ -782,34 +810,6 @@ assert(bazNotDefined, "hoisting only occurs within a single scope");
 function testFunc(){
   var baz = 'baz';
 }
-</pre></dd>
-<dt>bind.js</dt>
-<dd><pre>var obj = {
-  first: 'Bob',
-  last: 'Hope',
-  fullName: function(){
-    return this.first + ' ' + this.last;
-  }
-};
-
-function bind(fn, context){
-  return function(){
-    return fn.apply(context, arguments);
-  };
-}
-
-// alias the function
-var unbound = obj.fullName;
-
-assert(unbound() === 'undefined undefined', "without binding, function calls use the calling scope");
-
-// bind it to the original context
-var bound = bind(unbound, obj);
-
-assert(typeof bound === 'function', "bind() returns a function");
-assert(bound !== unbound, "returns a new function");
-assert(bound() === 'Bob Hope', "bound function will use the specified context");
-assert(bound.call({}) === 'Bob Hope', "bound function can be called in any context");
 </pre></dd>
 
 </dl>
