@@ -1,10 +1,13 @@
 # Advanced JavaScript
 
-* **Course:** [INFO1-CE9766, NYU SCPS, Spring 2013](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9766)
+***See this README prettier [here](http://documentup.com/afeld/advanced_js).***
+
+* **Course:** [INFO1-CE9766, NYU SCPS, Summer 2013](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9766)
 * **Location:** 7 E 12th St, Rm 227
-* **Schedule:** Saturdays, April 6th through May 4th 2013, 10am-1pm (5 sessions)
+* **Schedule:** Saturdays, July 13th through Aug 17th 2013 (except 8/10), 10am-1pm (5 sessions)
 * **Instructor:** Aidan Feldman, alf9 [at] nyu [dot] edu
 * **Office Hours:** Sundays during [Hacker Hours](http://hackerhours.org/) (see [Meetup page](http://nyc.hackerhours.org/events/calendar/) for schedule), or by appointment
+* [**Email List**](https://groups.google.com/a/nyu.edu/forum/#!forum/adv-js-summer-2013-group)
 
 ## Course Description
 
@@ -32,35 +35,50 @@ We will dive into the nuances of JavaScript, how prototypal inheritance compares
 
 Topics will be demonstrated through live-code examples, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
 
-## Homework
+## Course Outline
 
-Please email assignments by the start of the listed class to the instructor.  Send your assignments in an online sandbox (see [tools](https://github.com/afeld/advanced_js#tools)), or as a self-contained, runnable files within a ZIP as an attachment.
+Please email assignments to the instructor by the start of the next class.  Send your assignments in an online sandbox (see [tools](https://github.com/afeld/advanced_js#tools)), or as a self-contained, runnable ZIP.  All HTML files should pass the [W3C Markup Validation](http://validator.w3.org/), and JS should pass [JSHint](http://jshint.com/).
 
-### By class 2
+### Class 1
 
-* Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-* Finish up and send `echo()` exercise
-* Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag
+* Get through "self_executing_functions" slide
+* Homework:
+    * Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+    * Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
+    * Finish up and send `echo()` exercise
+    * Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag
 
-```javascript
-// show/hide every 500ms
-jQuery('.myDiv').blink(500);
-```
+        ```javascript
+        // show/hide every 500ms
+        jQuery('.myDiv').blink(500);
+        ```
 
-### By class 3
+### Class 2
 
-* Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
-* Start on [project](#project)
+* Homework:
+    * Start on [Text Twist project](#project)
 
-### By class 4
+### Class 3
 
-* Finish Memory game, v1. ([example](http://www.zefrank.com/memory/))
-* Finish Text Twist, v1.
+* Homework:
+    * Finish Memory game, v1. ([example](http://www.zefrank.com/memory/))
+    * Finish Text Twist, v1.
 
-### By class 5
+### Class 4
 
-* Refactor Memory and Text Twist to use 'classes'.
-* ...
+* Cover OOP, though "namespace" slide
+* Homework:
+    * Refactor Memory and Text Twist to use 'classes'.
+    * Advance at least one "level" from where you left off in class in the `namespace` exercise.
+
+### Class 5
+
+* Present projects
+* Cover AJAX/JSONP ([files](https://github.com/afeld/advanced_js/tree/master/ajax))
+* Cover handling parallel/serial async requests
+    * [async](https://github.com/caolan/async#control-flow-1) library
+    * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
+* AJAX exercise (see list of [good APIs for mashups](https://gist.github.com/afeld/4952991))
 
 ## Project
 
@@ -87,7 +105,7 @@ Bonus points:
 * animations (using JavaScript or CSS3)
 * variations or enhancements to the gameplay (please provide a written explanation of the expected behavior)
 
-You are welcome to publish on the web (think of your own name), but **please email files/folder/.zip of all necessary files to instructor (alf9 [at] nyu [dot] edu) by the start of the second session.**  You will also have the option to demo your game to the class.
+You are welcome to publish on the web (think of your own name), but **please email files/folder/.zip of all necessary files to instructor (alf9 [at] nyu [dot] edu) by the start of the final session.**  You will also have the option to demo your game to the class.
 
 ## Resources
 
@@ -95,6 +113,7 @@ You are welcome to publish on the web (think of your own name), but **please ema
 
 * [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 * [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
+* https://twitter.com/necolas/status/291978260433219584
 
 ### Recommended Reading
 
@@ -122,13 +141,14 @@ This class assumes you are confident with this material, but in case you need a 
 * [Code School](http://www.codeschool.com/paths/javascript)
 * Thoughtbot's [Javascript Trail Map](https://learn.thoughtbot.com/javascript)
 * [How To Learn JavaScript Properly](http://javascriptissexy.com/how-to-learn-javascript-properly/)
+* [Teach Yourself to Code](http://teachyourselftocode.com/)
 
 ### Tools
 
 * code validation: [JSLint](http://jslint.com) / [JSHint](http://jshint.com)
 * debugging: [Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/docs/overview) ([tutorial](http://code.google.com/chrome/extensions/tut_debugging.html)) / [Firebug](http://getfirebug.com/)
 * sharing code snippets: [gist.github.com](https://gist.github.com/)
-* HTML/CSS/JS sandbox: [jsFiddle](http://jsfiddle.net/) / [JS Bin](http://jsbin.com/)
+* HTML/CSS/JS sandbox: [jsFiddle](http://jsfiddle.net/) / [JS Bin](http://jsbin.com/) / [bl.ocks.org](http://bl.ocks.org/) / [CodePen](http://codepen.io/pen/)
 * asking questions: [Stack Overflow](http://stackoverflow.com/)
 
 ### Reference
