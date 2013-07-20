@@ -33,7 +33,7 @@ We will dive into the nuances of JavaScript, how prototypal inheritance compares
 * Creating MVC-style models (a'la Backbone.js) from scratch
 * Test- and Pseudocode-Driven Development
 
-Topics will be demonstrated through live-code examples, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
+Topics will be demonstrated through live-code examples/slides, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
 
 ## Course Outline
 
@@ -55,32 +55,40 @@ Please email assignments to the instructor by the start of the next class.  Send
 
 ### Class 2
 
+* Build Memory game, v1 ([example](http://www.zefrank.com/memory/))
+* Cover OOP, though "namespace" slide
 * Homework:
-    * Start on [Text Twist project](#project)
+    * Advance at least one "level" from where you left off in class in the `namespace()` exercise
+    * Finish Memory and refactor to use 'classes' (v2)
 
 ### Class 3
 
+* finish slides
+* ??
 * Homework:
-    * Finish Memory game, v1. ([example](http://www.zefrank.com/memory/))
-    * Finish Text Twist, v1.
+    * [Text Twist project](#text-twist)
 
 ### Class 4
 
-* Cover OOP, though "namespace" slide
+* Cover AJAX/JSONP ([files](https://github.com/afeld/advanced_js/tree/master/ajax))
 * Homework:
-    * Refactor Memory and Text Twist to use 'classes'.
-    * Advance at least one "level" from where you left off in class in the `namespace` exercise.
+    * Final polish on Text Twist
+    * [build a mashup](#mashup)
 
 ### Class 5
 
-* Present projects
-* Cover AJAX/JSONP ([files](https://github.com/afeld/advanced_js/tree/master/ajax))
-* Cover handling parallel/serial async requests
-    * [async](https://github.com/caolan/async#control-flow-1) library
-    * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
-* AJAX exercise (see list of [good APIs for mashups](https://gist.github.com/afeld/4952991))
+* Present mashup projects
+* Possible topics (vote?):
+    * Backbone.js
+    * Node.js
+    * Multiple async
+        * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
+            * write from scratch? w/ testing etc.
+        * [async](https://github.com/caolan/async#control-flow-1) library
 
-## Project
+## Projects
+
+### Text Twist
 
 As homework, you are going to re-create the game Text Twist.  The original (http://zone.msn.com/en/texttwist/, or [gameplay video](http://www.youtube.com/watch?v=qEfor-WdWTk&t=0m13s)) is an old-school Flash app... we want to bring it into this decade and port to JavaScript.  Spend a bit of time playing it to get the feel (warning: addictive).  The requirements:
 
@@ -101,11 +109,24 @@ Bonus points:
 
 * additional sets of letters
 * automated tests
-* “twist” functionality (reshuffling the letters mid-game)
+* "twist" functionality (reshuffling the letters mid-game)
 * animations (using JavaScript or CSS3)
 * variations or enhancements to the gameplay (please provide a written explanation of the expected behavior)
 
 You are welcome to publish on the web (think of your own name), but **please email files/folder/.zip of all necessary files to instructor (alf9 [at] nyu [dot] edu) by the start of the final session.**  You will also have the option to demo your game to the class.
+
+### Mashup
+
+This project is open-ended!  Build a site that uses data from at least one external API in an interesting way.  Start simple!  No server-side coding is required, but feel free to create a backend in whatever language if you like, if you need one.
+
+* [list of API suggestions](https://gist.github.com/afeld/4952991)
+* [inspiration?](http://www.programmableweb.com/mashups)
+
+Bonus points:
+
+* automated tests
+    * [Sinon.js fakeServer](http://sinonjs.org/docs/#fakeServer) may be helpful
+* fancy interactivity/animations
 
 ## Resources
 

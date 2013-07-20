@@ -1,6 +1,7 @@
-var fs = require('fs');
+var fs = require('fs'),
+  u = require('./vendor/underscore');
 
-var template = fs.readFileSync('index.html.ejs');
+var template = u.template(fs.readFileSync('index.html.ejs').toString());
 
 var dir = 'examples/',
   allFiles = fs.readdirSync(dir);
@@ -48,16 +49,13 @@ var files = [
 ];
 
 var slides = files.map(function(file){
-  // remove from list of allFiles
-  var i = allFiles.indexOf(file);
-  if (i > -1) allFiles.splice(i, 1);
-
   var code = fs.readFileSync(dir + file);
-  return '<dt>' + file + '</dt>\n<dd><pre>' + code + '</pre></dd>\n';
-}).join('');
+  return { file: file, code: code };
+});
 
-if (allFiles.length) console.warn('UNUSED FILES:\n' + allFiles.join('\n') + '\n');
+var unused = u.difference(allFiles, files);
+if (unused.length) console.warn('UNUSED FILES:\n' + unused.join('\n') + '\n');
 
-var output = template.toString().replace(/<%=\s*examples\s*%>/, slides);
+var output = template({ slides: slides });
 fs.writeFileSync('index.html', output);
 console.log("wrote to index.html");
