@@ -107,10 +107,9 @@ jQuery(document).ready(function(){
 		jQuery("h3").removeClass("large").html("Advanced JavaScript");
 		jQuery("#pre, #code").height(425).show();
 		
-		jQuery("dd:empty").prev("dt").each(function(i){
-			var dt = jQuery("dt").index(this);
-			jQuery("<a href='#" + (dt+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
-				pos = dt;
+		jQuery("dt").each(function(i, dt){
+			jQuery("<a href='#" + (i+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
+				pos = i;
 				loadSample();
 				return false;
 			}).appendTo("#pre");
@@ -191,7 +190,7 @@ function error(msg){
 function log(){
   var msg = "";
   for ( var i = 0; i < arguments.length; i++ ) {
-    msg += " " + arguments[i];
+    msg += " " + JSON.stringify(arguments[i]);
   }
   jQuery("#results").append("<li class='LOG'><b>LOG</b> " + msg + "</li>");
 }
@@ -213,8 +212,7 @@ var deepEqual = _.isEqual;
 <h3 class="">Advanced JavaScript</h3>
 <div id="area">
 <pre id="pre" class="javascript" style="height: 425px; ">
-  <a href="#1">1) Start</a>
-</a></pre>
+</pre>
 <form id="form">
 <div class="buttons" style="display: none; ">
 <input type="submit" value="Run" class="run" id="run">
@@ -229,10 +227,11 @@ var deepEqual = _.isEqual;
 </form>
 </div>
 <dl style="display: none; ">
-<dt>Start</dt>
-<dd></dd>
-<dt>array_as_object.js</dt>
-<dd><pre>var myAry = [
+
+	
+		<dt>array_as_object.js</dt>
+		<dd>
+			<pre>var myAry = [
   'foo',
   'bar',
   'baz'
@@ -248,9 +247,12 @@ myAry.newProp = "A property on an array";
 assert(myAry.newProp === "A property on an array", "assigning arbitrary properties");
 assert(myAry['newProp'] === "A property on an array", "can retrieve properties with square brackets");
 assert(myAry[0] === 'foo', "array access still works");
-</pre></dd>
-<dt>object_literal.js</dt>
-<dd><pre>var person1 = {
+</pre>
+		</dd>
+	
+		<dt>object_literal.js</dt>
+		<dd>
+			<pre>var person1 = {
   first: 'Bob',
   last: 'Hope'
 };
@@ -260,9 +262,12 @@ person2.last = 'Marley';
 
 assert(person1.last === 'Marley', "the original object is changed");
 assert(person1 === person2, "they are the same object");
-</pre></dd>
-<dt>pass_by_reference.js</dt>
-<dd><pre>function increment(val){
+</pre>
+		</dd>
+	
+		<dt>pass_by_reference.js</dt>
+		<dd>
+			<pre>function increment(val){
   val += 1;
   return val;
 }
@@ -282,9 +287,12 @@ var status = {
 };
 reset(status);
 assert(status.counter === 0, "objects are pass-by-reference");
-</pre></dd>
-<dt>arguments.js</dt>
-<dd><pre>function argumentative(){
+</pre>
+		</dd>
+	
+		<dt>arguments.js</dt>
+		<dd>
+			<pre>function argumentative(){
   assert(!(arguments instanceof Array), "'arguments' isn't really an array");
   assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
 
@@ -292,9 +300,12 @@ assert(status.counter === 0, "objects are pass-by-reference");
 }
 
 argumentative('foo', 'bar', 'baz');
-</pre></dd>
-<dt>echo_exercise.js</dt>
-<dd><pre>// EXERCISE: print out each of the arguments given
+</pre>
+		</dd>
+	
+		<dt>echo_exercise.js</dt>
+		<dd>
+			<pre>// EXERCISE: print out each of the arguments given
 
 function echo(/* args */){
   // ...
@@ -303,9 +314,12 @@ function echo(/* args */){
 echo();
 echo('bla');
 echo('foo', 'bar', 'baz');
-</pre></dd>
-<dt>extend.js</dt>
-<dd><pre>function extend(dest /*, sources */){
+</pre>
+		</dd>
+	
+		<dt>extend.js</dt>
+		<dd>
+			<pre>function extend(dest /*, sources */){
   var source, attr;
   for (var i = 1; i < arguments.length; i++){
     source = arguments[i];
@@ -327,9 +341,12 @@ extend(obj1, obj2);
 
 assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
 assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
-</pre></dd>
-<dt>countdown_exercise.js</dt>
-<dd><pre>// EXERCISE: make a kitchen timer.  Write a countdown() function that takes a
+</pre>
+		</dd>
+	
+		<dt>countdown_exercise.js</dt>
+		<dd>
+			<pre>// EXERCISE: make a kitchen timer.  Write a countdown() function that takes a
 // number of seconds, and prints each second counting down to zero.
 
 function countdown(seconds){
@@ -357,9 +374,12 @@ countdown(10);
 // documentation:
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setInterval
-</pre></dd>
-<dt>event_loop.js</dt>
-<dd><pre>// statements execute in order, except when there is a call that is asynchronous
+</pre>
+		</dd>
+	
+		<dt>event_loop.js</dt>
+		<dd>
+			<pre>// statements execute in order, except when there is a call that is asynchronous
 
 var order = [];
 
@@ -374,10 +394,13 @@ setTimeout(function(){
 order.push('after');
 
 // procedural statements executed in order, and async functions are queued in event loop
-</pre></dd>
-<dt>callbacks.js</dt>
-<dd><pre>// fake jQuery
-var $ = {
+</pre>
+		</dd>
+	
+		<dt>callbacks.js</dt>
+		<dd>
+			<pre>// fake jQuery
+var $$ = {
   get: function(url, callback){
     // this is where the call to the server would happen
 
@@ -389,15 +412,18 @@ var $ = {
 };
 
 var callbackCalled = false;
-$.get('http://foo.com/bar.json', function(data){
+$$.get('http://foo.com/bar.json', function(data){
   callbackCalled = true;
   assert(data.status === 'ok', "the callback receives the data");
 });
 
 assert(!callbackCalled, "callback doesn't exectute immediately");
-</pre></dd>
-<dt>self_executing_functions.js</dt>
-<dd><pre>// Fake jQuery: aQuery!
+</pre>
+		</dd>
+	
+		<dt>self_executing_functions.js</dt>
+		<dd>
+			<pre>// Fake jQuery: aQuery!
 
 var aQueryCalled = false;
 
@@ -405,19 +431,22 @@ var aQuery = function(){
   aQueryCalled = true;
 };
 
-var $ = function(){
-  throw new Error("outer $() should not be called");
+var $$ = function(){
+  throw new Error("outer $$() should not be called");
 };
 
 // this technique is used for jQuery plugins, where there might be other libraries (e.g. Prototype) that use the dollar sign variable
-(function($){
-  // $ is assigned to the argument passed in, which supercedes the local variable above
-  $('foo');
+(function($$){
+  // $$ is assigned to the argument passed in, which supercedes the local variable above
+  $$('foo');
   assert(aQueryCalled, "aQuery() should have been called");
 })(aQuery);
-</pre></dd>
-<dt>this.js</dt>
-<dd><pre>// NOTE: broken in the deck - run with `node run_tests.js examples/this.js`
+</pre>
+		</dd>
+	
+		<dt>this.js</dt>
+		<dd>
+			<pre>// NOTE: broken in the deck - run with `node run_tests.js examples/this.js`
 
 var global = this; // 'window' in the browser
 
@@ -452,9 +481,12 @@ var fn3 = obj.fn3;
 assert(fn3() === global, "context is dependent on where the function is called, not where it's defined");
 
 assert(fn3.call(obj) === obj, "applied context modifies 'this'");
-</pre></dd>
-<dt>apply_context.js</dt>
-<dd><pre>// NOTE: broken in the deck
+</pre>
+		</dd>
+	
+		<dt>apply_context.js</dt>
+		<dd>
+			<pre>// NOTE: broken in the deck
 
 var myVariable = "I'm global!";
 
@@ -469,9 +501,12 @@ assert(printMyVariable.apply(undefined) === "I'm global!", "using 'undefined' co
 assert(printMyVariable.apply(this) === "I'm global!", "using 'this' context");
 
 assert(printMyVariable.apply({ myVariable: "I'm local!" }) === "I'm local!", "using object as context");
-</pre></dd>
-<dt>call_vs_apply.js</dt>
-<dd><pre>function title(first, last){
+</pre>
+		</dd>
+	
+		<dt>call_vs_apply.js</dt>
+		<dd>
+			<pre>function title(first, last){
   return first + ' ' + last + ', M.D.';
 }
 
@@ -479,9 +514,12 @@ assert(title.call(this, 'Michaela', 'Quinn') === 'Michaela Quinn, M.D.', "call()
 assert(title.apply(this, ['Michaela', 'Quinn']) === 'Michaela Quinn, M.D.', "apply() takes individual arguments after the context");
 
 // easy to remember - 'a' (in 'apply') is for Array
-</pre></dd>
-<dt>bind.js</dt>
-<dd><pre>var obj = {
+</pre>
+		</dd>
+	
+		<dt>bind.js</dt>
+		<dd>
+			<pre>var obj = {
   first: 'Bob',
   last: 'Hope',
   fullName: function(){
@@ -507,9 +545,12 @@ assert(typeof bound === 'function', "bind() returns a function");
 assert(bound !== unbound, "returns a new function");
 assert(bound() === 'Bob Hope', "bound function will use the specified context");
 assert(bound.call({}) === 'Bob Hope', "bound function can be called in any context");
-</pre></dd>
-<dt>oop_basic.js</dt>
-<dd><pre>var Person = function(first, last){
+</pre>
+		</dd>
+	
+		<dt>oop_basic.js</dt>
+		<dd>
+			<pre>var Person = function(first, last){
   this.first = first;
   this.last = last;
 };
@@ -523,9 +564,12 @@ assert(bob !== sally, "two instances are not the same");
 
 assert(bob instanceof Person, "'new' creates instance");
 assert(bob instanceof Object, "it's an Object");
-</pre></dd>
-<dt>instance_vs_prototype.js</dt>
-<dd><pre>var Person = function(first, last){
+</pre>
+		</dd>
+	
+		<dt>instance_vs_prototype.js</dt>
+		<dd>
+			<pre>var Person = function(first, last){
   this.first = first;
   this.last = last;
 
@@ -550,9 +594,12 @@ assert(bruce.title() === 'Mr. Bruce Wayne', "correct title for bruce");
 assert(tony.title() === 'Mr. Tony Stark', "correct title for tony");
 
 assert(bruce.title === tony.title, "functions set on the prototype are shared by all instances");
-</pre></dd>
-<dt>object_prototype.js</dt>
-<dd><pre>// remember array_as_object.js?
+</pre>
+		</dd>
+	
+		<dt>object_prototype.js</dt>
+		<dd>
+			<pre>// remember array_as_object.js?
 // native types have prototypes, too
 
 var myAry = [];
@@ -563,9 +610,12 @@ assert(typeof myAry === 'object', "so is an Array");
 
 assert(Object.prototype.toString.apply(myObj) === '[object Object]', "Object's toString() acts differently than typeof");
 assert(Object.prototype.toString.apply(myAry) === '[object Array]', "it can distinguish an Array from an Object");
-</pre></dd>
-<dt>oop_inheritance.js</dt>
-<dd><pre>var Vehicle = function(){};
+</pre>
+		</dd>
+	
+		<dt>oop_inheritance.js</dt>
+		<dd>
+			<pre>var Vehicle = function(){};
 
 Vehicle.prototype.numWheels = function(){
   return undefined;
@@ -584,9 +634,12 @@ var myCar = new Car();
 
 assert(myCar.numWheels() === 4, "subclass used its own function definition");
 assert(myVehicle.numWheels() === undefined, "superclass function wasn't overwritten");
-</pre></dd>
-<dt>namespace.js</dt>
-<dd><pre>// like Java, but hackier!
+</pre>
+		</dd>
+	
+		<dt>namespace.js</dt>
+		<dd>
+			<pre>// like Java, but hackier!
 
 var app = {};
 app.models = {};
@@ -600,9 +653,12 @@ assert(bob instanceof Object, "Objects under a namespace are just Objects");
 // perks:
 // * helps to organize
 // * doesn't crowd the global namespace
-</pre></dd>
-<dt>namespace_exercise.js</dt>
-<dd><pre>// EXERCISE: write a namespace() function that takes a period-delimited
+</pre>
+		</dd>
+	
+		<dt>namespace_exercise.js</dt>
+		<dd>
+			<pre>// EXERCISE: write a namespace() function that takes a period-delimited
 // string of arbitrary length and makes that namespace available globally,
 // without squashing any that were previously-defined.  For example:
 
@@ -641,9 +697,12 @@ namespace('foo.lib.external');
 //   app.models.View; // should not raise an error
 
 // start here: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/split
-</pre></dd>
-<dt>oop_private.js</dt>
-<dd><pre>var User = function(username, pass){
+</pre>
+		</dd>
+	
+		<dt>oop_private.js</dt>
+		<dd>
+			<pre>var User = function(username, pass){
   var password = pass;
   this.username = username;
 
@@ -666,57 +725,63 @@ assert(tony.login('12345') === true, "methods can access private vars, again");
 //   var bob = new User();
 //   bob.set('phone', '123-456-7890');
 //   var bobsPhone = bob.get('phone');
-</pre></dd>
-<dt>singleton.js</dt>
-<dd><pre>// Fake jQuery
+</pre>
+		</dd>
+	
+		<dt>singleton.js</dt>
+		<dd>
+			<pre>// Fake jQuery
 // Usage:
-//   $('#mySelector') // element
-//   $.cacheLength() // int (number of selectors in cache)
+//   $$('#mySelector') // element
+//   $$.cacheLength() // int (number of selectors in cache)
 
-var $ = function(selector){
-  assert(this !== $, "'this' refers to the window/global");
+var $$ = function(selector){
+  assert(this !== $$, "'this' refers to the window/global");
 
   // check if it's already cached
-  var elt = $._elementCache[selector];
+  var elt = $$._elementCache[selector];
   if (!elt){
     elt = 'fakeElement'; // we would actually use document.getElementById(), etc.
-    $._elementCache[selector] = elt; // cache it
-    $._cacheSize++;
+    $$._elementCache[selector] = elt; // cache it
+    $$._cacheSize++;
   }
   return elt;
 };
 
 // private variables - by convention, names start with underscore
-$._elementCache = {};
-$._cacheSize = 0;
+$$._elementCache = {};
+$$._cacheSize = 0;
 
 // public method
-$.cacheLength = function(){
-  assert(this === $, "'this' refers to the parent object, $");
+$$.cacheLength = function(){
+  assert(this === $$, "'this' refers to the parent object, $$");
 
   return this._cacheSize;
 };
 
 
-assert(deepEqual($._elementCache, {}), "private variable '_elementCache' is accessible");
-assert($._cacheSize === 0, "private variable '_cacheSize' is accessible");
-assert($.cacheLength() === 0, "cache should be empty to start");
+assert(deepEqual($$._elementCache, {}), "private variable '_elementCache' is accessible");
+assert($$._cacheSize === 0, "private variable '_cacheSize' is accessible");
+assert($$.cacheLength() === 0, "cache should be empty to start");
 
-var elt = $('#myDiv');
+var elt = $$('#myDiv');
 
-assert($.cacheLength() === 1, "cache should be incremented after query");
+assert($$.cacheLength() === 1, "cache should be incremented after query");
 
-var sameElt = $('#myDiv');
+var sameElt = $$('#myDiv');
 
-assert($.cacheLength() === 1, "cache should be not be incremented for a repeated query");
-</pre></dd>
-<dt>module.js</dt>
-<dd><pre>// Fake jQuery
+assert($$.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+</pre>
+		</dd>
+	
+		<dt>module.js</dt>
+		<dd>
+			<pre>// Fake jQuery
 // Usage:
-//   $('#mySelector') // element
-//   $.cacheLength() // int (number of selectors in cache)
+//   $$('#mySelector') // element
+//   $$.cacheLength() // int (number of selectors in cache)
 
-var $ = (function(){
+var $$ = (function(){
   // private variables
   var elementCache = {},
     cacheSize = 0;
@@ -741,19 +806,22 @@ var $ = (function(){
 })();
 
 
-assert($.elementCache === undefined, "private variables should be undefined");
-assert($.cacheLength() === 0, "cache should be empty to start");
+assert($$.elementCache === undefined, "private variables should be undefined");
+assert($$.cacheLength() === 0, "cache should be empty to start");
 
-var elt = $('#myDiv');
+var elt = $$('#myDiv');
 
-assert($.cacheLength() === 1, "cache should be incremented after query");
+assert($$.cacheLength() === 1, "cache should be incremented after query");
 
-var sameElt = $('#myDiv');
+var sameElt = $$('#myDiv');
 
-assert($.cacheLength() === 1, "cache should be not be incremented for a repeated query");
-</pre></dd>
-<dt>class_vs_instance_methods.js</dt>
-<dd><pre>var Person = function(first, last){
+assert($$.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+</pre>
+		</dd>
+	
+		<dt>class_vs_instance_methods.js</dt>
+		<dd>
+			<pre>var Person = function(first, last){
   this.first = first;
   this.last = last;
 };
@@ -780,9 +848,12 @@ var blondie = Person.newKitten('Blondie', alex, aidan);
 
 assert(blondie instanceof Person, "if you *treat* it like a child...");
 assert(blondie.fullName() === 'Blondie Bisker-Feldman', "assigns the name correctly");
-</pre></dd>
-<dt>hoisting.js</dt>
-<dd><pre>var fooNotDefined = false;
+</pre>
+		</dd>
+	
+		<dt>hoisting.js</dt>
+		<dd>
+			<pre>var fooNotDefined = false;
 try {
   log(foo);
 } catch(e){
@@ -810,7 +881,9 @@ assert(bazNotDefined, "hoisting only occurs within a single scope");
 function testFunc(){
   var baz = 'baz';
 }
-</pre></dd>
+</pre>
+		</dd>
+	
 
 </dl>
 
