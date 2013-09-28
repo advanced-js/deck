@@ -2,12 +2,12 @@
 
 ***See this README prettier [here](http://documentup.com/afeld/advanced_js).***
 
-* **Course:** [INFO1-CE9766, NYU SCPS, Summer 2013](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9766)
-* **Location:** 7 E 12th St, Rm 227
-* **Schedule:** Saturdays, July 13th through Aug 17th 2013 (except 8/10), 10am-1pm (5 sessions)
-* **Instructor:** Aidan Feldman, alf9 [at] nyu [dot] edu
-* **Office Hours:** Sundays during [Hacker Hours](http://hackerhours.org/) (see [Meetup page](http://nyc.hackerhours.org/events/calendar/) for schedule), or by appointment
-* [**Email List**](https://groups.google.com/a/nyu.edu/forum/#!forum/adv-js-summer-2013-group)
+* **Course:** [INFO1-CE9766, NYU SCPS](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9766)
+* **Instructor:** Aidan Feldman, alf9@nyu.edu
+* **Need help?**
+   * [Issues](https://github.com/afeld/advanced_js/issues) (please don't post solutions)
+   * Office Hours on Sundays during [Hacker Hours](http://hackerhours.org/) (see [Meetup page](http://www.meetup.com/hackerhours/events/calendar/) for schedule)
+   * [Email](alf9@nyu.edu) for 1-on-1 help, or to set up a time to meet
 
 ## Course Description
 
@@ -15,12 +15,12 @@ Learn best practices in JavaScript in this intensive, five-session course. Topic
 
 ## Prerequisites
 
-The following, or equivalent:
-
-* [INFO1-CE9755 - JavaScript](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9755) ([syllabus](https://github.com/afeld/advanced_js/blob/master/vendor/INFO1-CE9755%20JavaScript.pdf?raw=true))
+* [INFO1-CE9755 - JavaScript](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9755) ([syllabus](https://github.com/afeld/advanced_js/blob/master/vendor/INFO1-CE9755%20JavaScript.pdf?raw=true)) or equivalent
 * Understanding of variables, data types, control flow, and basic function usage in JavaScript - see [Beginner Materials](#beginner-materials)
 * Strong intermediate knowledge of HTML, and at least basics of CSS
 * Basic jQuery knowledge (DOM interaction) is a plus
+
+These won't be enforced by the instructor, but you will be pretty lost without understanding those concepts.
 
 ## Course Overview
 
@@ -30,103 +30,124 @@ We will dive into the nuances of JavaScript, how prototypal inheritance compares
 * Classical vs. prototypal inheritance
 * The event loop
 * AJAX and JSONP
+    * local
+    * remote (e.g. Foursquare)
 * Creating MVC-style models (a'la Backbone.js) from scratch
 * Test- and Pseudocode-Driven Development
 
 Topics will be demonstrated through live-code examples/slides, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
 
-## Course Outline
+See [this interview](http://masterstreet.wordpress.com/2013/09/05/interview-with-aidan-feldman-instructor-at-nyu-scps/) for more background.
 
-Please email assignments to the instructor by the start of the next class.  Send your assignments in an online sandbox (see [tools](https://github.com/afeld/advanced_js#tools)), or as a self-contained, runnable ZIP.  All HTML files should pass the [W3C Markup Validation](http://validator.w3.org/), and JS should pass [JSHint](http://jshint.com/).
+## Homework/Projects
+
+All assignments are listed within the [Course Outline](#course-outline).
+
+### Submission
+
+Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by the start of the following class.  Sumbissions can be in one of the following formats:
+
+* A link to the project hosted live
+    * On your own site
+    * An online sandbox (see [tools](#tools))
+* A self-contained, runnable ZIP
+
+### Requirements
+
+* All HTML files should pass [W3C Markup Validation](http://validator.w3.org/)
+* All written JS should pass [JSHint](http://jshint.com/)
+* Must apply "good programming style" learned in class
+    * Functions should be "short" (see [Sandi Metz's rules for developers](http://robots.thoughtbot.com/post/50655960596/sandi-metz-rules-for-developers))
+    * For projects, use Object-Oriented Programming
+* Bonus points for:
+    * Automated tests
+    * Creativity (as long as requirements are fulfilled)
+
+## Course Outline
 
 ### Class 1
 
+* Introduction
+* Student checklist:
+    * "Watch" this repo (need a [GitHub account](https://github.com))
+
+        ![watch](assets/watch.png)
+
+    * Access [NYU Classes](https://newclasses.nyu.edu) page
 * Get through "self_executing_functions" slide
 * Homework:
     * Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
     * Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
-    * Finish up and send `echo()` exercise
-    * Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag
+    * Finish up and send `echo()` and `countdown()` exercises
+    * Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag.  Something like this (should work for any arbitrary speed):
 
         ```javascript
-        // show/hide every 500ms
-        jQuery('.myDiv').blink(500);
+        // show/hide every 1000ms
+        jQuery('.myDiv').blink(1000);
         ```
+
+        ![blink demo](assets/blink.gif)
 
 ### Class 2
 
 * Build Memory game, v1 ([example](http://www.zefrank.com/memory/))
-* Cover OOP, though "namespace" slide
+* Cover OOP, though "oop_inheritance" slide
 * Homework:
-    * Advance at least one "level" from where you left off in class in the `namespace()` exercise
     * Finish Memory and refactor to use 'classes' (v2)
 
 ### Class 3
 
-* finish slides
-* ??
+* Finish slides
+* Cover AJAX/JSONP ([files](demos/ajax))
 * Homework:
-    * [Text Twist project](#text-twist)
+    * [Mashup](projects/mashup.md) v1
 
 ### Class 4
 
-* Cover AJAX/JSONP ([files](https://github.com/afeld/advanced_js/tree/master/ajax))
+* Mashup demos
+* Add tests to namespace
+    * Build up a test framework from scratch
+    * Show QUnit
+* Getting Serious example
+    * Quick intro to Backbone.js
+* Multiple async
+    * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
+        * write from scratch? w/ testing etc.
+    * Possibly show [async](https://github.com/caolan/async#control-flow-1) library?
 * Homework:
-    * Final polish on Text Twist
-    * [build a mashup](#mashup)
+    * [Mashup](projects/mashup.md) v2
 
 ### Class 5
 
-* Present mashup projects
+* Present and code review Mashup projects
+* [JSONP](demos/ajax/jsonp.html)
+    * example API?
 * Possible topics (vote?):
-    * Backbone.js
     * Node.js
-    * Multiple async
-        * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
-            * write from scratch? w/ testing etc.
-        * [async](https://github.com/caolan/async#control-flow-1) library
+        * Server "Hello World" (from [Node.js homepage](http://nodejs.org/))
+            * [HTTP module docs](http://nodejs.org/api/http.html)
+        * HTTP requests
+            * Network tab in Dev Tools
+            * [Status codes](http://pretty-rfc.herokuapp.com/RFC2616#status.codes)
+            * Headers
+        * CommonJS?
+    * [Regular Expressions](demos/regex.html)
+        * Convert live input, e.g. link Twitter handles from a textarea
+    * Command-line and Git
 
 ## Projects
 
-### Text Twist
+Possible projects:
 
-As homework, you are going to re-create the game Text Twist.  The original (http://zone.msn.com/en/texttwist/, or [gameplay video](http://www.youtube.com/watch?v=qEfor-WdWTk&t=0m13s)) is an old-school Flash app... we want to bring it into this decade and port to JavaScript.  Spend a bit of time playing it to get the feel (warning: addictive).  The requirements:
+* [Mashup](projects/mashup.md)
+* [Text Twist](examples/text_twist.md)
 
-* two sets of letters
-    * get a single set working first
-    * the dictionaries can be small - just enough to show that the game works
-    * should be trivial to add additional sets
-* which set is used for each game (random vs. strict ordering): coder’s choice
-* letters from set displayed in random order at the start of each game
-* game should be playable with keyboard only (you might use jQuery [keypress](http://api.jquery.com/keypress/)/[keydown](http://api.jquery.com/keydown/))
-* display a player’s progress within a game, either similar to the Yahoo implementation (empty boxes on the left), or in a different creative way
-* a countdown showing the time remaining (time limit up to you)
-* a way to reset the game when it ends
-* use at least one of the Contructor, Factory or Module patterns
-* commented, well-structured code
+## Pairing Tips
 
-Bonus points:
-
-* additional sets of letters
-* automated tests
-* "twist" functionality (reshuffling the letters mid-game)
-* animations (using JavaScript or CSS3)
-* variations or enhancements to the gameplay (please provide a written explanation of the expected behavior)
-
-You are welcome to publish on the web (think of your own name), but **please email files/folder/.zip of all necessary files to instructor (alf9 [at] nyu [dot] edu) by the start of the final session.**  You will also have the option to demo your game to the class.
-
-### Mashup
-
-This project is open-ended!  Build a site that uses data from at least one external API in an interesting way.  Start simple!  No server-side coding is required, but feel free to create a backend in whatever language if you like, if you need one.
-
-* [list of API suggestions](https://gist.github.com/afeld/4952991)
-* [inspiration?](http://www.programmableweb.com/mashups)
-
-Bonus points:
-
-* automated tests
-    * [Sinon.js fakeServer](http://sinonjs.org/docs/#fakeServer) may be helpful
-* fancy interactivity/animations
+* Three people is possible, but two works best
+* Agree on an editor and environment that you're both comfortable with
+* The person who's less experienced/comfortable should have more keyboard time
+* Switch who's "driving" regularly
 
 ## Resources
 
@@ -148,6 +169,7 @@ Bonus points:
 * [HTML5 Rocks slides](http://slides.html5rocks.com/)
 * [Classical Inheritance in JavaScript](http://www.crockford.com/javascript/inheritance.html) by Douglas Crockford
 * [Partial Application in JavaScript](http://benalman.com/news/2012/09/partial-application-in-javascript/) by Ben Alman (thanks [michaelBenin](https://github.com/michaelBenin))
+* [JavaScript Best Practices](http://www.thinkful.com/learn/javascript-best-practices-1/)
 * [Front-end Job Interview Questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions) by @darcyclarke (for testing yourself)
 
 ### Beginner Materials
@@ -169,7 +191,12 @@ This class assumes you are confident with this material, but in case you need a 
 * code validation: [JSLint](http://jslint.com) / [JSHint](http://jshint.com)
 * debugging: [Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/docs/overview) ([tutorial](http://code.google.com/chrome/extensions/tut_debugging.html)) / [Firebug](http://getfirebug.com/)
 * sharing code snippets: [gist.github.com](https://gist.github.com/)
-* HTML/CSS/JS sandbox: [jsFiddle](http://jsfiddle.net/) / [JS Bin](http://jsbin.com/) / [bl.ocks.org](http://bl.ocks.org/) / [CodePen](http://codepen.io/pen/)
+* HTML/CSS/JS sandbox:
+  * [jsFiddle](http://jsfiddle.net/)
+  * [JS Bin](http://jsbin.com/)
+  * [bl.ocks.org](http://bl.ocks.org/)
+  * [CodePen](http://codepen.io/pen/)
+  * [rawgithub.com](http://rawgithub.com/)
 * asking questions: [Stack Overflow](http://stackoverflow.com/)
 
 ### Reference
