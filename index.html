@@ -118,7 +118,7 @@ argumentative('foo', 'bar', 'baz');
 	
 		<dt>echo_exercise.js</dt>
 		<dd>
-			<pre>// EXERCISE: print out each of the arguments given
+			<pre>// EXERCISE: print out each argument on a new line
 
 function echo(/* args */){
   // ...
@@ -187,6 +187,7 @@ countdown(10);
 // documentation:
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout
 // * https://developer.mozilla.org/en-US/docs/DOM/window.setInterval
+// * https://developer.mozilla.org/en-US/docs/Web/API/window.clearInterval
 </pre>
 		</dd>
 	
@@ -423,6 +424,9 @@ assert(typeof myAry === 'object', "so is an Array");
 
 assert(Object.prototype.toString.apply(myObj) === '[object Object]', "Object's toString() acts differently than typeof");
 assert(Object.prototype.toString.apply(myAry) === '[object Array]', "it can distinguish an Array from an Object");
+
+// look at _.isArray()
+// http://underscorejs.org/docs/underscore.html
 </pre>
 		</dd>
 	
@@ -454,11 +458,15 @@ assert(myVehicle.numWheels() === undefined, "superclass function wasn't overwrit
 		<dd>
 			<pre>// like Java, but hackier!
 
-var app = {};
+// create the namespace
+var app = {}; // the only global
 app.models = {};
+
+// add stuff to the namespace
 app.models.User = function(){};
 app.models.Vehicle = function(){};
 
+// use stuff from the namespace
 var bob = new app.models.User();
 
 assert(bob instanceof Object, "Objects under a namespace are just Objects");
@@ -480,11 +488,15 @@ function namespace(path){
 }
 
 namespace('app.models');
-// app.models.User = function(){};
+// creates `app.models`.  We can then add a Class to it:
+//
+//   app.models.User = function(){};
 
 namespace('app.views');
-// app.views.User = function(){};
-// assert(app.models.User !== app.views.User, "different namespaces don't override each other");
+// add a class to it:
+//
+//   app.views.User = function(){};
+//   assert(app.models.User !== app.views.User, "different namespaces don't override each other");
 
 namespace('foo.lib.external');
 // is synonymous to:
@@ -492,6 +504,9 @@ namespace('foo.lib.external');
 //   var foo = {};
 //   foo.lib = {};
 //   foo.lib.external = {};
+
+// Build it using TDD!
+// https://github.com/afeld/advanced_js#test-frameworks
 
 // Level 1: Make it work for namespaces
 //   of a certain length, e.g.
@@ -645,22 +660,22 @@ Person.prototype.fullName = function(){
 };
 
 // 'class' method
-Person.newKitten = function(first, parent1, parent2){
+Person.newKid = function(first, parent1, parent2){
   var last = parent1.last + '-' + parent2.last;
   return new Person(first, last);
 };
 
 
-var alex = new Person('Alex', 'Bisker');
-var aidan = new Person('Aidan', 'Feldman');
+var jane = new Person('Jane', 'Gordon');
+var dennis = new Person('Dennis', 'Levitt');
 
-assert(alex.newKitten === undefined, "class method isn't available on an instance");
+assert(jane.newKid === undefined, "class method isn't available on an instance");
 assert(Person.fullName === undefined, "instance method isn't available on the class");
 
-var blondie = Person.newKitten('Blondie', alex, aidan);
+var joseph = Person.newKid('Joseph', jane, dennis);
 
-assert(blondie instanceof Person, "if you *treat* it like a child...");
-assert(blondie.fullName() === 'Blondie Bisker-Feldman', "assigns the name correctly");
+assert(joseph instanceof Person, "the factory method returns a new instance");
+assert(joseph.fullName() === 'Joseph Gordon-Levitt', "assigns the name correctly");
 </pre>
 		</dd>
 	
