@@ -7,11 +7,15 @@ function namespace(path){
 }
 
 namespace('app.models');
-// app.models.User = function(){};
+// creates `app.models`.  We can then add a Class to it:
+//
+//   app.models.User = function(){};
 
 namespace('app.views');
-// app.views.User = function(){};
-// assert(app.models.User !== app.views.User, "different namespaces don't override each other");
+// add a class to it:
+//
+//   app.views.User = function(){};
+//   assert(app.models.User !== app.views.User, "different namespaces don't override each other");
 
 namespace('foo.lib.external');
 // is synonymous to:
@@ -19,6 +23,9 @@ namespace('foo.lib.external');
 //   var foo = {};
 //   foo.lib = {};
 //   foo.lib.external = {};
+
+// Build it using TDD!
+// https://github.com/afeld/advanced_js#test-frameworks
 
 // Level 1: Make it work for namespaces
 //   of a certain length, e.g.

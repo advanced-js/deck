@@ -1,4 +1,4 @@
-# Advanced JavaScript
+# Advanced JavaScript [![Build Status](https://travis-ci.org/afeld/advanced_js.png?branch=master)](https://travis-ci.org/afeld/advanced_js)
 
 ***See this README prettier [here](http://documentup.com/afeld/advanced_js).***
 
@@ -12,6 +12,8 @@
 ## Course Description
 
 Learn best practices in JavaScript in this intensive, five-session course. Topics include data encapsulation, closures, binding, inheritance, and name spacing. Discover some of the lesser-known, yet useful, features of the language, such as how to debug JavaScript problems on different browsers and improve performance. Create interactive webpages using third-party JavaScript libraries.
+
+Computers are provided in the lab, though you are encouraged to bring a laptop for in-class exercises if you feel more comfortable coding in your own environment.
 
 ## Prerequisites
 
@@ -47,20 +49,25 @@ All assignments are listed within the [Course Outline](#course-outline).
 
 Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by the start of the following class.  Sumbissions can be in one of the following formats:
 
-* A link to the project hosted live
+* A link to the code hosted live (preferred), e.g.
     * On your own site
+    * GitHub Pages ([guide](http://www.thinkful.com/learn/a-guide-to-using-github-pages/))
     * An online sandbox (see [tools](#tools))
-* A self-contained, runnable ZIP
+        * These are great for small bits of code like the in-class exercises, but not things that are more substantial, like projects.  Better to have files split up and organized in directories for those, which sandbox sites (to my knowledge) don't offer.
+* A self-contained, runnable ZIP (HTML included)
 
 ### Requirements
+
+These apply to real life, as well.
 
 * All HTML files should pass [W3C Markup Validation](http://validator.w3.org/)
 * All written JS should pass [JSHint](http://jshint.com/)
 * Must apply "good programming style" learned in class
     * Functions should be "short" (see [Sandi Metz's rules for developers](http://robots.thoughtbot.com/post/50655960596/sandi-metz-rules-for-developers))
+    * Optimize for readability
     * For projects, use Object-Oriented Programming
 * Bonus points for:
-    * Automated tests
+    * [Automated tests](#test-frameworks)
     * Creativity (as long as requirements are fulfilled)
 
 ## Course Outline
@@ -74,31 +81,50 @@ Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by th
         ![watch](assets/watch.png)
 
     * Access [NYU Classes](https://newclasses.nyu.edu) page
+* Explain how slides work
+    * Look at [helpers.js](assets/helpers.js)
 * Get through "self_executing_functions" slide
 * Homework:
     * Read [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
     * Read [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
     * Finish up and send `echo()` and `countdown()` exercises
-    * Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag.  Something like this (should work for any arbitrary speed):
+    * Write [jQuery plugin](http://docs.jquery.com/Plugins/Authoring) that makes an element act like a `<blink>` tag.  It should work for any arbitrary speed.
 
         ```javascript
         // show/hide every 1000ms
         jQuery('.myDiv').blink(1000);
+        // twice as fast
+        jQuery('.otherDiv').blink(500);
         ```
 
         ![blink demo](assets/blink.gif)
 
 ### Class 2
 
-* Build Memory game, v1 ([example](http://www.zefrank.com/memory/))
+* Look at various approaches for `countdown()`
+    * Show recursive solution
+* Pair program to build [Memory v1](projects/memory.md) (see [pairing tips](#pairing-tips))
 * Cover OOP, though "oop_inheritance" slide
+    * [Encapsulation example](http://jsbin.com/eGiteJa/2/edit?css,js,output)
+    * Look at [Backbone.js Events](http://backbonejs.org/docs/backbone.html)
+* Cover automated testing
+    * Examples in QUnit
+        * [Simple](http://jsbin.com/AqENEjo/1/edit?html,js,output)
+        * [Classes](http://jsbin.com/edoRoGU/1/edit?js,output)
+    * [Other frameworks](#test-frameworks)
 * Homework:
-    * Finish Memory and refactor to use 'classes' (v2)
+    * [Memory v2](projects/memory.md#v2) (individual)
 
 ### Class 3
 
+* Code review Memory
 * Finish slides
+* Developer Tools walkthrough
+    * Elements (HTML)
+    * Console (JS)
+    * Scripts (JS)
 * Cover AJAX/JSONP ([files](demos/ajax))
+    * Network tab in Developer Tools
 * Homework:
     * [Mashup](projects/mashup.md) v1
 
@@ -110,9 +136,11 @@ Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by th
     * Show QUnit
 * Getting Serious example
     * Quick intro to Backbone.js
+        * [Boilerplate](http://jsbin.com/IGivato/1/edit?html,js,output)
+        * Click the Box [example app](http://jsbin.com/IGivato/5/edit?css,js,output)
+        * TDD?
 * Multiple async
     * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
-        * write from scratch? w/ testing etc.
     * Possibly show [async](https://github.com/caolan/async#control-flow-1) library?
 * Homework:
     * [Mashup](projects/mashup.md) v2
@@ -120,14 +148,11 @@ Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by th
 ### Class 5
 
 * Present and code review Mashup projects
-* [JSONP](demos/ajax/jsonp.html)
-    * example API?
 * Possible topics (vote?):
     * Node.js
         * Server "Hello World" (from [Node.js homepage](http://nodejs.org/))
             * [HTTP module docs](http://nodejs.org/api/http.html)
         * HTTP requests
-            * Network tab in Dev Tools
             * [Status codes](http://pretty-rfc.herokuapp.com/RFC2616#status.codes)
             * Headers
         * CommonJS?
@@ -137,10 +162,7 @@ Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by th
 
 ## Projects
 
-Possible projects:
-
-* [Mashup](projects/mashup.md)
-* [Text Twist](examples/text_twist.md)
+Possible projects are listed [here](projects).
 
 ## Pairing Tips
 
@@ -148,29 +170,38 @@ Possible projects:
 * Agree on an editor and environment that you're both comfortable with
 * The person who's less experienced/comfortable should have more keyboard time
 * Switch who's "driving" regularly
+* Make sure to save the code and send it to both people
+* [JS Bin](http://jsbin.com/) supports live collaborating
 
 ## Resources
+
+### More Examples
+
+* [map/reduce](http://jsbin.com/ojapAsUR/2/edit?js) (in [Underscore](http://underscorejs.org/#map))
 
 ### Required Reading
 
 * [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 * [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/)
+* [Mozilla's Introduction to Object-Oriented Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
 * https://twitter.com/necolas/status/291978260433219584
+* http://afeld.me/nerdery/1742468
 
 ### Recommended Reading
 
-* [Learning Advanced JavaScript slides](http://ejohn.org/apps/learn/) by John Resig
-* [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) by Douglas Crockford
-* [JavaScript Web Applications](http://www.amazon.com/JavaScript-Web-Applications-Alex-MacCaw/dp/144930351X/) by Alex MacCaw
+* [Classical Inheritance in JavaScript](http://www.crockford.com/javascript/inheritance.html) by Douglas Crockford
+* [Front-end Job Interview Questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions) by @darcyclarke (for testing yourself)
+* [HTML5 Rocks slides](http://slides.html5rocks.com/)
+* [JavaScript Best Practices](http://www.thinkful.com/learn/javascript-best-practices-1/)
 * [JavaScript Patterns](http://shichuan.github.com/javascript-patterns/) by @shichuan (thanks @iandrewfuchs)
 * [JavaScript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) by Stoyan Stephanov
+* [JavaScript Web Applications](http://www.amazon.com/JavaScript-Web-Applications-Alex-MacCaw/dp/144930351X/) by Alex MacCaw
+* [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) by Douglas Crockford
+* [Learning Advanced JavaScript slides](http://ejohn.org/apps/learn/) by John Resig
 * [Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) by Addy Osmani
+* [Partial Application in JavaScript](http://benalman.com/news/2012/09/partial-application-in-javascript/) by Ben Alman (thanks @michaelBenin)
 * [Test-Driven JavaScript Development](http://www.amazon.com/Test-Driven-JavaScript-Development-Developers-Library/dp/0321683919) by Christian Johansen
-* [HTML5 Rocks slides](http://slides.html5rocks.com/)
-* [Classical Inheritance in JavaScript](http://www.crockford.com/javascript/inheritance.html) by Douglas Crockford
-* [Partial Application in JavaScript](http://benalman.com/news/2012/09/partial-application-in-javascript/) by Ben Alman (thanks [michaelBenin](https://github.com/michaelBenin))
-* [JavaScript Best Practices](http://www.thinkful.com/learn/javascript-best-practices-1/)
-* [Front-end Job Interview Questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions) by @darcyclarke (for testing yourself)
+* [The JavaScript Interpreter, Interpreted](http://www.slideshare.net/marthakelly/js-interpreter-interpreted) by Martha Girdler [(video)](http://www.youtube.com/watch?v=iSxNCYcPAFk)
 
 ### Beginner Materials
 
@@ -191,13 +222,28 @@ This class assumes you are confident with this material, but in case you need a 
 * code validation: [JSLint](http://jslint.com) / [JSHint](http://jshint.com)
 * debugging: [Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/docs/overview) ([tutorial](http://code.google.com/chrome/extensions/tut_debugging.html)) / [Firebug](http://getfirebug.com/)
 * sharing code snippets: [gist.github.com](https://gist.github.com/)
-* HTML/CSS/JS sandbox:
-  * [jsFiddle](http://jsfiddle.net/)
-  * [JS Bin](http://jsbin.com/)
-  * [bl.ocks.org](http://bl.ocks.org/)
-  * [CodePen](http://codepen.io/pen/)
-  * [rawgithub.com](http://rawgithub.com/)
 * asking questions: [Stack Overflow](http://stackoverflow.com/)
+
+#### HTML/CSS/JS sandbox
+
+* [JS Bin](http://jsbin.com/) (recommended)
+* [jsFiddle](http://jsfiddle.net/)
+* [bl.ocks.org](http://bl.ocks.org/)
+* [CodePen](http://codepen.io/pen/)
+* [rawgithub.com](http://rawgithub.com/)
+
+#### Test Frameworks
+
+Recommended:
+
+* [QUnit](http://qunitjs.com/) (the simplest one)
+    * [boilerplate](http://jsbin.com/otugUwI/1/edit?html,js,output)
+        * If you prefer to work locally, choose "Download" from the menu.
+
+            ![jsBin download](assets/jsbin_download.png)
+
+* [Jasmine](http://pivotal.github.io/jasmine/)
+* [Mocha](http://visionmedia.github.io/mocha/)
 
 ### Reference
 
@@ -208,8 +254,7 @@ This class assumes you are confident with this material, but in case you need a 
 ## Grading
 
 * Class Participation – 30%
-* Homework – 40%
-* Quiz – 30%
+* Homework – 70%
 
 ## Statements on Plagarism
 
