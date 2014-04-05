@@ -1,9 +1,1 @@
-// EXERCISE: print out each argument on a new line
-
-function echo(/* args */){
-  // ...
-}
-
-echo();
-echo('bla');
-echo('foo', 'bar', 'baz');
+// see https://github.com/advanced-js/echo
