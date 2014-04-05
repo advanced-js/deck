@@ -37,7 +37,7 @@ We will dive into the nuances of JavaScript, how prototypal inheritance compares
 * Creating MVC-style models (a'la Backbone.js) from scratch
 * Test- and Pseudocode-Driven Development
 
-Topics will be demonstrated through live-code examples/slides, available at [afeld.github.io/advanced_js](http://afeld.github.io/advanced_js/).  Additional exercises will completed in-class.
+Topics will be demonstrated through live-code examples/slides, available at [advanced-js.github.io/syllabus](http://advanced-js.github.io/syllabus/).  Additional exercises will completed in-class.
 
 See [this interview](http://masterstreet.wordpress.com/2013/09/05/interview-with-aidan-feldman-instructor-at-nyu-scps/) for more background.
 
@@ -270,25 +270,3 @@ Recommended:
 ### Instructor
 
 Reuse and building upon ideas or code are major parts of modern software development.  As a professional programmer you will never write anything from scratch.  Please respect the terms of use and/or license, and if you reimplement or duplicate an algorithm or code from elsewhere, credit the original source with an inline comment.
-
-------------------------------------
-
-## Using this repo
-
-[Node.js](http://nodejs.org) is required (tested w/ Node v0.10.2).  To run the `examples/`:
-
-    $ node run_tests.js
-
-To run an individual exercise:
-
-    $ node run_tests.js examples/FILENAME.js
-
-To build the examples as HTML:
-
-    $ node build.js
-
-To build this README as a PDF:
-
-    $ gem install gimli
-    $ gimli
-    # outputs README.pdf
