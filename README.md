@@ -1,4 +1,4 @@
-# Slide deck for Advanced JavaScript class
+# Slide deck for [Advanced JavaScript class](https://github.com/advanced-js/syllabus)
 
 ## Using this repo
 

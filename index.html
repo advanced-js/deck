@@ -35,7 +35,7 @@
 <div id="container">
 	<textarea id="code" wrap="off" style="height: 425px; "></textarea>
 	<ol id="results"></ol>
-	<p id="cite">Get the source code, syllabus and resources <a href="https://github.com/advanced-js/syllabus">here</a>.  Slides by <a href="http://afeld.me">Aidan Feldman</a>.  Template blatantly stolen from <a href="http://ejohn.org/apps/learn">John Resig</a>.</p>
+	<p id="cite">Get the source code <a href="https://github.com/advanced-js/deck">here</a>.  Slides by <a href="http://afeld.me">Aidan Feldman</a>.  Template blatantly stolen from <a href="http://ejohn.org/apps/learn">John Resig</a>.</p>
 </div>
 </form>
 </div>
@@ -500,7 +500,7 @@ namespace('app.views');
 
 namespace('foo.lib.external');
 // is synonymous to:
-//   
+//
 //   var foo = {};
 //   foo.lib = {};
 //   foo.lib.external = {};
@@ -511,16 +511,16 @@ namespace('foo.lib.external');
 // Level 1: Make it work for namespaces
 //   of a certain length, e.g.
 //   'app.models' and 'foo.lib'.
-// 
+//
 // Level 2: Make it work for namespaces
 //   of arbitrary length.
-// 
+//
 // Level 3: If some level of the namespace
 //   already exists, don't override it, e.g.
-//   
+//
 //   namespace('app.models');
 //   app.models.View = function(){};
-//   
+//
 //   namespace('app.views');
 //   app.models.View; // should not raise an error
 
