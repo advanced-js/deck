@@ -1,6 +1,6 @@
-# Slide deck for [Advanced JavaScript class](https://github.com/advanced-js/syllabus)
+# [Advanced JavaScript](https://github.com/advanced-js/syllabus) slide deck
 
-## Using this repo
+## Building
 
 [Node.js](http://nodejs.org) is required (tested w/ Node v0.10.2).  To run the `examples/`:
 
