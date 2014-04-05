@@ -1,11 +1,11 @@
-# Advanced JavaScript [![Build Status](https://travis-ci.org/afeld/advanced_js.png?branch=master)](https://travis-ci.org/afeld/advanced_js)
+# Advanced JavaScript [![Build Status](https://travis-ci.org/advanced-js/syllabus.png?branch=master)](https://travis-ci.org/advanced-js/syllabus)
 
-***See this README prettier [here](http://documentup.com/afeld/advanced_js).***
+***See this README prettier [here](http://documentup.com/advanced-js/syllabus).***
 
 * **Course:** [INFO1-CE9766, NYU SCPS](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9766)
 * **Instructor:** Aidan Feldman, alf9@nyu.edu
 * **Need help?**
-   * [Issues](https://github.com/afeld/advanced_js/issues) (please don't post solutions)
+   * [Issues](https://github.com/advanced-js/syllabus/issues) (please don't post solutions)
    * Office Hours on Sundays during [Hacker Hours](http://hackerhours.org/) (see [Meetup page](http://www.meetup.com/hackerhours/events/calendar/) for schedule)
    * [Email](alf9@nyu.edu) for 1-on-1 help, or to set up a time to meet
 
@@ -17,7 +17,7 @@ Computers are provided in the lab, though you are encouraged to bring a laptop f
 
 ## Prerequisites
 
-* [INFO1-CE9755 - JavaScript](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9755) ([syllabus](https://github.com/afeld/advanced_js/blob/master/vendor/INFO1-CE9755%20JavaScript.pdf?raw=true)) or equivalent
+* [INFO1-CE9755 - JavaScript](http://scps.nyu.edu/content/scps/academics/course_detail.html?id=INFO1-CE9755) ([syllabus](https://github.com/advanced-js/syllabus/blob/master/vendor/INFO1-CE9755%20JavaScript.pdf?raw=true)) or equivalent
 * Understanding of variables, data types, control flow, and basic function usage in JavaScript - see [Beginner Materials](#beginner-materials)
 * Strong intermediate knowledge of HTML, and at least basics of CSS
 * Basic jQuery knowledge (DOM interaction) is a plus
@@ -47,14 +47,16 @@ All assignments are listed within the [Course Outline](#course-outline).
 
 ### Submission
 
-Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by the start of the following class.  Sumbissions can be in one of the following formats:
+Submit homework and projects via [NYU Classes](https://newclasses.nyu.edu) by the start of the following class.  Submissions can be in one of the following formats:
 
 * A link to the code hosted live (preferred), e.g.
     * On your own site
-    * GitHub Pages ([guide](http://www.thinkful.com/learn/a-guide-to-using-github-pages/))
+    * [GitHub Pages](http://pages.github.com/) ([add'l guide](http://www.thinkful.com/learn/a-guide-to-using-github-pages/))
     * An online sandbox (see [tools](#tools))
         * These are great for small bits of code like the in-class exercises, but not things that are more substantial, like projects.  Better to have files split up and organized in directories for those, which sandbox sites (to my knowledge) don't offer.
 * A self-contained, runnable ZIP (HTML included)
+
+***Do not just copy-and-paste the code into the submission form.***
 
 ### Requirements
 
@@ -142,7 +144,7 @@ These apply to real life, as well.
 * Multiple async
     * Promises/[jQuery.Deferred](http://api.jquery.com/jQuery.Deferred/)
     * Possibly show [async](https://github.com/caolan/async#control-flow-1) library?
-* Homework:
+* Homework:re
     * [Mashup](projects/mashup.md) v2
 
 ### Class 5
@@ -212,6 +214,7 @@ This class assumes you are confident with this material, but in case you need a 
 
 ### Other Lists
 
+* [JS: The Right Way](http://www.jstherightway.org/) (an overview of the JS landscape)
 * [Code School](http://www.codeschool.com/paths/javascript)
 * Thoughtbot's [Javascript Trail Map](https://learn.thoughtbot.com/javascript)
 * [How To Learn JavaScript Properly](http://javascriptissexy.com/how-to-learn-javascript-properly/)
@@ -227,9 +230,11 @@ This class assumes you are confident with this material, but in case you need a 
 #### HTML/CSS/JS sandbox
 
 * [JS Bin](http://jsbin.com/) (recommended)
-* [jsFiddle](http://jsfiddle.net/)
 * [bl.ocks.org](http://bl.ocks.org/)
+* [Cloud9](https://c9.io/)
 * [CodePen](http://codepen.io/pen/)
+* [jsFiddle](http://jsfiddle.net/)
+* [Plunker](http://plnkr.co/)
 * [rawgithub.com](http://rawgithub.com/)
 
 #### Test Frameworks
