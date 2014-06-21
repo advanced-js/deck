@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>AJAX example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+      $.ajax({
+        url: 'https://api.instagram.com/v1/media/popular?client_id=ce95cb4e56c146c994457b48a839f6a8',
+        dataType: 'jsonp',
+        success: function(result){
+          for (var i = 0; i < result.data.length; i++){
+            var url = result.data[i].images.thumbnail.url;
+            $('body').append('<img src="' + url + '"/>');
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    Images:
+  </body>
+</html>
