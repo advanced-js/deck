@@ -76,12 +76,12 @@ jQuery(document).ready(function(){
   } else {
     showTOC();
   }
-  
+
   function showTOC(){
     jQuery("#pre").empty();
     jQuery("h3").removeClass("large").html("Advanced JavaScript");
     jQuery("#pre, #code").height(425).show();
-    
+
     jQuery("dt").each(function(i, dt){
       jQuery("<a href='#" + (i+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
         pos = i;
@@ -89,13 +89,13 @@ jQuery(document).ready(function(){
         return false;
       }).appendTo("#pre");
     });
-    
+
     jQuery("div.buttons").hide();
   }
 
   function loadSample(){
     jQuery("div.buttons").show();
-    
+
     var code = jQuery("#code");
 
     var source = (jQuery("dd").eq(pos).find("pre").html() || "")
@@ -107,7 +107,7 @@ jQuery(document).ready(function(){
     } else {
       jQuery("h3").removeClass("large");
       jQuery("#pre, #code, #cite").show();
-      
+
       if ( source.match(/assert\(|log\(|error\(/) )
         jQuery("#run").show();
       else
@@ -117,6 +117,14 @@ jQuery(document).ready(function(){
     jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
     code.val( source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">") );
     jQuery("#pre").html( source ).chili();
+
+    jQuery('#pre .mlcom').each(function(i, el) {
+      var $el = jQuery(el);
+      var value = $el.text().replace(/(\/\*|\*\/)/g, '').trim();
+      var newContents = '<span class="question">// ?</span><span class="value">// ' + value + '</span>';
+      $el.html(newContents);
+    });
+
     jQuery("#results").empty();
 
     code.add("#pre").height(275)[0];
@@ -138,7 +146,7 @@ jQuery(document).ready(function(){
 
     window.location.hash = pos + 1;
   }
-  
+
   setInterval(function(){
     if ( location.hash != ("#" + (pos + 1)) ) {
       var num = parseInt(location.hash.substr(1)) - 1;
