@@ -13,8 +13,8 @@ function reset(statusObj){
   statusObj.counter = 0;
 }
 
-var status = {
+var myStatus = {
   counter: 6
 };
-reset(status);
-assert(status.counter === 0, "objects are pass-by-reference");
+reset(myStatus);
+assert(myStatus.counter === 0, "objects are pass-by-reference");
