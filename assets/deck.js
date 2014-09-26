@@ -118,11 +118,23 @@ jQuery(document).ready(function(){
     code.val( source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">") );
     jQuery("#pre").html( source ).chili();
 
-    jQuery('#pre .mlcom').each(function(i, el) {
+    var $values = jQuery('#pre .mlcom');
+    $values.each(function(i, el) {
       var $el = jQuery(el);
       var value = $el.text().replace(/(\/\*|\*\/)/g, '').trim();
       var newContents = '<span class="question">// ?</span><span class="value">// ' + value + '</span>';
       $el.html(newContents);
+    });
+
+    // hide answers when code is copied. ideally 'user-select: none' would be used, but
+    // https://bugs.webkit.org/show_bug.cgi?id=80159
+    $(document).on('selectionchange', function(e){
+      var selection = window.getSelection();
+      if (selection.isCollapsed) {
+        $values.show();
+      } else {
+        $values.hide();
+      }
     });
 
     jQuery("#results").empty();
