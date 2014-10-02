@@ -403,8 +403,9 @@ Vehicle.prototype.numWheels = function(){
 };
 
 var Car = function(){};
-// a bit of strange JS magic to inherit methods
-Car.prototype = new Vehicle();
+// note this is an ES5 thing
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Browser_compatibility
+Car.prototype = Object.create(Vehicle.prototype);
 
 Car.prototype.numWheels = function(){
   return 4;
