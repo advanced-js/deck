@@ -4,11 +4,11 @@
 var myAry = [];
 var myObj = {};
 
-assert(typeof myObj === 'object', "an object is an Object");
-assert(typeof myAry === 'object', "so is an Array");
+assertTripleEqual(typeof myObj, 'object', "an object is an Object");
+assertTripleEqual(typeof myAry, 'object', "so is an Array");
 
-assert(Object.prototype.toString.apply(myObj) === '[object Object]', "Object's toString() acts differently than typeof");
-assert(Object.prototype.toString.apply(myAry) === '[object Array]', "it can distinguish an Array from an Object");
+assertTripleEqual(Object.prototype.toString.apply(myObj), '[object Object]', "Object's toString() acts differently than typeof");
+assertTripleEqual(Object.prototype.toString.apply(myAry), '[object Array]', "it can distinguish an Array from an Object");
 
 // look at _.isArray()
 // http://underscorejs.org/docs/underscore.html

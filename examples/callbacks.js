@@ -13,7 +13,7 @@ var $$ = {
 var callbackCalled = false;
 $$.get('http://foo.com/bar.json', function(data){
   callbackCalled = true;
-  assert(data.status === 'ok', "the callback receives the data");
+  assertTripleEqual(data.status, 'ok', "the callback receives the data");
 });
 
 assert(!callbackCalled, "callback doesn't exectute immediately");

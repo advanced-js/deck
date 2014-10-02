@@ -6,7 +6,7 @@ var Person = function(first, last){
 var bob = new Person('Bob', 'Hope');
 var sally = new Person('Sally', 'Field');
 
-assert(bob.first === 'Bob', "the public properties are accessible");
+assertTripleEqual(bob.first, 'Bob', "the public properties are accessible");
 
 assert(bob !== sally, "two instances are not the same");
 

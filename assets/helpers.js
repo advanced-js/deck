@@ -5,3 +5,6 @@ var assert = function(pass, msg) {
 var assertDeepEqual = function(actual, expected, msg) {
   assert(_.isEqual(actual, expected), msg);
 };
+var assertTripleEqual = function(actual, expected, msg) {
+  assert(actual === expected, msg);
+};

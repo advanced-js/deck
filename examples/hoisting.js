@@ -6,10 +6,10 @@ try {
 }
 
 assert(fooNotDefined, "non-declared variables will throw errors when called");
-assert(typeof foo === 'undefined', "non-declared variables have a typeof 'undefined'");
+assertTripleEqual(typeof foo, 'undefined', "non-declared variables have a typeof 'undefined'");
 
-assert(bar === undefined, "variable declarations get hoisted, but not the assignment");
-assert(typeof bar === 'undefined', "declared (but unset) variables *also* have typeof 'undefined'");
+assertTripleEqual(bar, undefined, "variable declarations get hoisted, but not the assignment");
+assertTripleEqual(typeof bar, 'undefined', "declared (but unset) variables *also* have typeof 'undefined'");
 
 var bar = 'bar';
 
