@@ -7,7 +7,7 @@ order.push('before');
 setTimeout(function(){
   order.push('within');
 
-  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
+  assertDeepEqual(order, ['before', 'after', 'within'], "timeout callback executed last");
 }, 0);
 
 order.push('after');

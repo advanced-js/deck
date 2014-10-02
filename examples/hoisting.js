@@ -1,6 +1,6 @@
 var fooNotDefined = false;
 try {
-  log(foo);
+  console.log(foo);
 } catch(e){
   fooNotDefined = true;
 }
@@ -16,7 +16,7 @@ var bar = 'bar';
 
 var bazNotDefined = false;
 try {
-  log(baz);
+  console.log(baz);
 } catch(e){
   bazNotDefined = true;
 }

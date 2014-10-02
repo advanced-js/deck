@@ -28,7 +28,7 @@ $$.cacheLength = function(){
 };
 
 
-assert(deepEqual($$._elementCache, {}), "private variable '_elementCache' is accessible");
+assertDeepEqual($$._elementCache, {}, "private variable '_elementCache' is accessible");
 assert($$._cacheSize === 0, "private variable '_cacheSize' is accessible");
 assert($$.cacheLength() === 0, "cache should be empty to start");
 

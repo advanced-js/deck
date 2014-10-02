@@ -144,8 +144,8 @@ var obj2 = {
 
 extend(obj1, obj2);
 
-assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
-assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
+assertDeepEqual(obj1, { obj1Prop: true, obj2Prop: true }, "merges properties onto destination");
+assertDeepEqual(obj2, { obj2Prop: true }, "doesn't modify source object");
 </pre>
 		</dd>
 	
@@ -166,7 +166,7 @@ order.push('before');
 setTimeout(function(){
   order.push('within');
 
-  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
+  assertDeepEqual(order, ['before', 'after', 'within'], "timeout callback executed last");
 }, 0);
 
 order.push('after');
@@ -552,7 +552,7 @@ $$.cacheLength = function(){
 };
 
 
-assert(deepEqual($$._elementCache, {}), "private variable '_elementCache' is accessible");
+assertDeepEqual($$._elementCache, {}, "private variable '_elementCache' is accessible");
 assert($$._cacheSize === 0, "private variable '_cacheSize' is accessible");
 assert($$.cacheLength() === 0, "cache should be empty to start");
 
@@ -647,7 +647,7 @@ assert(joseph.fullName() === 'Joseph Gordon-Levitt', "assigns the name correctly
 		<dd>
 			<pre>var fooNotDefined = false;
 try {
-  log(foo);
+  console.log(foo);
 } catch(e){
   fooNotDefined = true;
 }
@@ -663,7 +663,7 @@ var bar = 'bar';
 
 var bazNotDefined = false;
 try {
-  log(baz);
+  console.log(baz);
 } catch(e){
   bazNotDefined = true;
 }

@@ -108,7 +108,7 @@ jQuery(document).ready(function(){
       jQuery("h3").removeClass("large");
       jQuery("#pre, #code, #cite").show();
 
-      if ( source.match(/assert\(|log\(|error\(/) )
+      if ( source.match(/assert(DeepEqual)?\(/) )
         jQuery("#run").show();
       else
         jQuery("#run").hide();

@@ -24,25 +24,30 @@ function runExercise(filename){
 
     console.log(path.basename(filename) + '\n------------------');
 
+    var myAssert = function(condition, message){
+      if (condition){
+        console.log('PASS - ' + message);
+        numPasses++;
+      } else {
+        logError(filename, 'FAIL - ' + message);
+      }
+    };
+
+    var deepEqual = function(obj1, obj2){
+      try {
+        assert.deepEqual(obj1, obj2);
+        return true;
+      } catch (e){
+        return false;
+      }
+    };
+
     try {
       // create new context for each run
       vm.runInNewContext(code, {
-        assert: function(condition, message){
-          if (condition){
-            console.log('PASS - ' + message);
-            numPasses++;
-          } else {
-            logError(filename, 'FAIL - ' + message);
-          }
-        },
-        console: console,
-        deepEqual: function(obj1, obj2){
-          try {
-            assert.deepEqual(obj1, obj2);
-            return true;
-          } catch (e){
-            return false;
-          }
+        assert: myAssert,
+        assertDeepEqual: function(actual, expected, msg) {
+          myAssert(deepEqual(actual, expected), msg);
         },
         setTimeout: setTimeout
       });
