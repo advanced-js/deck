@@ -1,24 +1,6 @@
 jQuery(document).ready(function(){
   jQuery("dl").hide();
 
-  jQuery("form").submit(function(){
-    jQuery("#results").empty();
-
-    try {
-      (new Function( jQuery("#code").val() ))();
-    } catch(e){
-      error(e.message);
-    }
-
-    for ( var item in window ) {
-      if ( !stasis[item] ) {
-        window[item] = undefined;
-        delete window[item];
-      }
-    }
-    return false;
-  });
-
   jQuery("#code").keydown(function(e){
     if ( this.setSelectionRange ) {
       var start = this.selectionStart, val = this.value;
@@ -103,15 +85,10 @@ jQuery(document).ready(function(){
 
     if ( !source ) {
       jQuery("h3").addClass("large");
-      jQuery("#pre, #code, #run, #cite").hide();
+      jQuery("#pre, #code, #cite").hide();
     } else {
       jQuery("h3").removeClass("large");
       jQuery("#pre, #code, #cite").show();
-
-      if ( source.match(/assert(DeepEqual|TripleEqual)?\(/) )
-        jQuery("#run").show();
-      else
-        jQuery("#run").hide();
     }
 
     jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
