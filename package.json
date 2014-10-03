@@ -22,5 +22,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/advanced-js/deck/issues"
+  },
+  "devDependencies": {
+    "falafel": "^0.3.1"
   }
 }

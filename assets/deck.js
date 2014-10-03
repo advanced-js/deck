@@ -92,9 +92,28 @@ jQuery(document).ready(function(){
     }
 
     jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
-    code.val( source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">") );
-    jQuery("#pre").html( source ).chili();
+    source = source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+    code.val(source);
 
+    // rewrite all assertDeepEqual()s to show the value + reason in a comment
+    var output = Falafel(source, function (node) {
+      if (node.type === 'CallExpression' && (node.callee.name === 'assertDeepEqual' || node.callee.name === 'assertTripleEqual')) {
+        var actual = node.arguments[0].source();
+        var expected = node.arguments[1].source();
+        var reason = node.arguments[2];
+        if (reason) {
+          expected += ' -- ' + reason.value;
+        }
+
+        var newSource = actual + '; /* ' + expected + ' */';
+        // update the parent (ExpressionStatement) so that the semicolon isn't included
+        node.parent.update(newSource);
+      }
+    });
+
+    jQuery("#pre").html( output.toString() ).chili();
+
+    // hide the commented values
     var $values = jQuery('#pre .mlcom');
     $values.each(function(i, el) {
       var $el = jQuery(el);
