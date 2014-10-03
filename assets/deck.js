@@ -1,40 +1,6 @@
 jQuery(document).ready(function(){
   jQuery("dl").hide();
 
-  jQuery("#code").keydown(function(e){
-    if ( this.setSelectionRange ) {
-      var start = this.selectionStart, val = this.value;
-
-      if ( e.keyCode == 13 ) {
-        var match = val.substring(0, start).match(/(^|\n)([ \t]*)([^\n]*)$/);
-        if ( match ) {
-          var spaces = match[2], length = spaces.length + 1;
-          this.value = val.substring(0, start) + "\n" + spaces + val.substr(this.selectionEnd);
-          this.setSelectionRange(start + length, start + length);
-          this.focus();
-          return false;
-        }
-      } else if ( e.keyCode == 8 ) {
-        if ( val.substring(start - 2, start) == "  " ) {
-          this.value = val.substring(0, start - 2) + val.substr(this.selectionEnd);
-          this.setSelectionRange(start - 2, start - 2);
-          this.focus();
-          return false;
-        }
-      } else if ( e.keyCode == 9 ) {
-        this.value = val.substring(0, start) + "  " + val.substr(this.selectionEnd);
-        this.setSelectionRange(start + 2, start + 2);
-        this.focus();
-        return false;
-      }
-    }
-  });
-
-  jQuery("#pre").dblclick(function(){
-    jQuery("#pre").hide();
-    jQuery("#code").focus();
-  });
-
   jQuery("#prev").click(function(){
     pos--;
     loadSample();
@@ -62,7 +28,7 @@ jQuery(document).ready(function(){
   function showTOC(){
     jQuery("#pre").empty();
     jQuery("h3").removeClass("large").html("Advanced JavaScript");
-    jQuery("#pre, #code").height(425).show();
+    jQuery("#pre").show();
 
     jQuery("dt").each(function(i, dt){
       jQuery("<a href='#" + (i+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
@@ -78,22 +44,19 @@ jQuery(document).ready(function(){
   function loadSample(){
     jQuery("div.buttons").show();
 
-    var code = jQuery("#code");
-
     var source = (jQuery("dd").eq(pos).find("pre").html() || "")
                             .replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
 
     if ( !source ) {
       jQuery("h3").addClass("large");
-      jQuery("#pre, #code, #cite").hide();
+      jQuery("#pre, #cite").hide();
     } else {
       jQuery("h3").removeClass("large");
-      jQuery("#pre, #code, #cite").show();
+      jQuery("#pre, #cite").show();
     }
 
     jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
     source = source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-    code.val(source);
 
     // rewrite all assertDeepEqual()s to show the value + reason in a comment
     var output = Falafel(source, function (node) {
@@ -132,13 +95,6 @@ jQuery(document).ready(function(){
         $values.hide();
       }
     });
-
-    jQuery("#results").empty();
-
-    code.add("#pre").height(275)[0];
-
-    if ( code[0].scrollHeight > 275 )
-      code.add("#pre").height( code[0].scrollHeight + 5 );
 
     var last = jQuery("dt").length - 1;
 
