@@ -21,6 +21,6 @@ assertTripleEqual(unbound(), 'undefined undefined', "without binding, function c
 var bound = bind(unbound, obj);
 
 assertTripleEqual(typeof bound, 'function', "bind() returns a function");
-assert(bound !== unbound, "returns a new function");
+assertTripleEqual(bound === unbound, false, "returns a new function");
 assertTripleEqual(bound(), 'Bob Hope', "bound function will use the specified context");
 assertTripleEqual(bound.call({}), 'Bob Hope', "bound function can be called in any context");

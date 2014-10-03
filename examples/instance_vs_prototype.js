@@ -17,7 +17,7 @@ var tony = new Person('Tony', 'Stark');
 assertTripleEqual(bruce.fullName(), 'Bruce Wayne', "correct fullName for bruce");
 assertTripleEqual(tony.fullName(), 'Tony Stark', "correct fullName for tony");
 
-assert(bruce.fullName !== tony.fullName, "functions created in the constructor are unique to each instance");
+assertTripleEqual(bruce.fullName === tony.fullName, false, "functions created in the constructor are unique to each instance");
 
 assertTripleEqual(bruce.title(), 'Mr. Bruce Wayne', "correct title for bruce");
 assertTripleEqual(tony.title(), 'Mr. Tony Stark', "correct title for tony");

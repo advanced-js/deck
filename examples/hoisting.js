@@ -1,11 +1,12 @@
-var fooNotDefined = false;
+var isFooDefined;
 try {
   console.log(foo);
+  isFooDefined = true;
 } catch(e){
-  fooNotDefined = true;
+  isFooDefined = false;
 }
 
-assert(fooNotDefined, "non-declared variables will throw errors when called");
+assertTripleEqual(isFooDefined, false, "non-declared variables will throw errors when called");
 assertTripleEqual(typeof foo, 'undefined', "non-declared variables have a typeof 'undefined'");
 
 assertTripleEqual(bar, undefined, "variable declarations get hoisted, but not the assignment");
@@ -14,14 +15,15 @@ assertTripleEqual(typeof bar, 'undefined', "declared (but unset) variables *also
 var bar = 'bar';
 
 
-var bazNotDefined = false;
+var isBazDefined;
 try {
   console.log(baz);
+  isBazDefined = true;
 } catch(e){
-  bazNotDefined = true;
+  isBazDefined = false;
 }
 
-assert(bazNotDefined, "hoisting only occurs within a single scope");
+assertTripleEqual(isBazDefined, false, "hoisting only occurs within a single scope");
 
 function testFunc(){
   var baz = 'baz';

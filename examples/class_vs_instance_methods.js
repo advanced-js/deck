@@ -23,5 +23,5 @@ assertTripleEqual(Person.fullName, undefined, "instance method isn't available o
 
 var joseph = Person.newKid('Joseph', jane, dennis);
 
-assert(joseph instanceof Person, "the factory method returns a new instance");
+assertTripleEqual(joseph instanceof Person, true, "the factory method returns a new instance");
 assertTripleEqual(joseph.fullName(), 'Joseph Gordon-Levitt', "assigns the name correctly");

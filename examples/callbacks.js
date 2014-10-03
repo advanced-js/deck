@@ -16,4 +16,4 @@ $$.get('http://foo.com/bar.json', function(data){
   assertTripleEqual(data.status, 'ok', "the callback receives the data");
 });
 
-assert(!callbackCalled, "callback doesn't exectute immediately");
+assertTripleEqual(callbackCalled, false, "callback doesn't exectute immediately");

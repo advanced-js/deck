@@ -45,7 +45,6 @@ function runExercise(filename){
     try {
       // create new context for each run
       vm.runInNewContext(code, {
-        assert: myAssert,
         assertTripleEqual: function(actual, expected, msg) {
           myAssert(actual === expected, msg);
         },

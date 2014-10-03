@@ -14,5 +14,5 @@ var $$ = function(){
 (function($$){
   // $$ is assigned to the argument passed in, which supercedes the local variable above
   $$('foo');
-  assert(aQueryCalled, "aQuery() should have been called");
+  assertTripleEqual(aQueryCalled, true, "aQuery() should have been called");
 })(aQuery);

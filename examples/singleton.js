@@ -4,7 +4,7 @@
 //   $$.cacheLength() // int (number of selectors in cache)
 
 var $$ = function(selector){
-  assert(this !== $$, "'this' refers to the window/global");
+  assertTripleEqual(this === $$, false, "'this' refers to the window/global");
 
   // check if it's already cached
   var elt = $$._elementCache[selector];

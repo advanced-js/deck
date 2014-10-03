@@ -8,7 +8,7 @@ var sally = new Person('Sally', 'Field');
 
 assertTripleEqual(bob.first, 'Bob', "the public properties are accessible");
 
-assert(bob !== sally, "two instances are not the same");
+assertTripleEqual(bob === sally, false, "two instances are not the same");
 
-assert(bob instanceof Person, "'new' creates instance");
-assert(bob instanceof Object, "it's an Object");
+assertTripleEqual(bob instanceof Person, true, "'new' creates instance");
+assertTripleEqual(bob instanceof Object, true, "it's an Object");

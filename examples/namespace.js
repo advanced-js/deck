@@ -11,7 +11,7 @@ app.models.Vehicle = function(){};
 // use stuff from the namespace
 var bob = new app.models.User();
 
-assert(bob instanceof Object, "Objects under a namespace are just Objects");
+assertTripleEqual(bob instanceof Object, true, "Objects under a namespace are just Objects");
 
 // perks:
 // * helps to organize
