@@ -12,3 +12,22 @@ a { color: #EEE; text-decoration: none; border-bottom: 1px solid #EEE; }
 .FAIL b, .ERROR b { color: red; /* #990066 */ }
 .PASS b { color: #73C836; }
 #results { line-height: 1.3em; font-size: 18px; background: #222; z-index: 10; }
+
+.mlcom {
+  position: relative;
+}
+.mlcom span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: opacity 0.2s linear;
+}
+.mlcom .value {
+  opacity: 0;
+}
+.mlcom:hover .question {
+  opacity: 0;
+}
+.mlcom:hover .value {
+  opacity: 1;
+}

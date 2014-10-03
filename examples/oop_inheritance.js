@@ -16,5 +16,5 @@ Car.prototype.numWheels = function(){
 var myVehicle = new Vehicle();
 var myCar = new Car();
 
-assert(myCar.numWheels() === 4, "subclass used its own function definition");
-assert(myVehicle.numWheels() === undefined, "superclass function wasn't overwritten");
+assertTripleEqual(myCar.numWheels(), 4, "subclass used its own function definition");
+assertTripleEqual(myVehicle.numWheels(), undefined, "superclass function wasn't overwritten");

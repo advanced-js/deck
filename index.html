@@ -4,11 +4,10 @@
 <link rel="stylesheet" href="assets/deck.css">
 <link rel="stylesheet" href="vendor/recipes.css">
 <script src="vendor/jquery.js"></script>
-<script src="vendor/underscore.js"></script>
 <script src="vendor/jquery.chili.js"></script>
 <script src="vendor/recipes.js"></script>
+<script src="vendor/falafel.js"></script>
 <script src="assets/deck.js"></script>
-<script src="assets/helpers.js"></script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-19048260-8']);
@@ -28,7 +27,6 @@
 </pre>
 <form id="form">
 <div class="buttons" style="display: none; ">
-<input type="submit" value="Run" class="run" id="run">
 <input type="button" id="prev" value="<< Prev">
 <input type="button" id="next" value="Next >>">
 </div>
@@ -50,16 +48,16 @@
   'baz'
 ];
 
-assert(myAry[0] === 'foo', "access with number");
-assert(myAry['0'] === 'foo', "access with string");
+assertTripleEqual(myAry[0], 'foo', "access with number");
+assertTripleEqual(myAry['0'], 'foo', "access with string");
 
-assert(typeof {} === 'object', "an object is an Object");
-assert(typeof myAry === 'object', "so is an Array");
+assertTripleEqual(typeof {}, 'object', "an object is an Object");
+assertTripleEqual(typeof myAry, 'object', "so is an Array");
 
 myAry.newProp = "A property on an array";
-assert(myAry.newProp === "A property on an array", "assigning arbitrary properties");
-assert(myAry['newProp'] === "A property on an array", "can retrieve properties with square brackets");
-assert(myAry[0] === 'foo', "array access still works");
+assertTripleEqual(myAry.newProp, "A property on an array", "assigning arbitrary properties");
+assertTripleEqual(myAry['newProp'], "A property on an array", "can retrieve properties with square brackets");
+assertTripleEqual(myAry[0], 'foo', "array access still works");
 </pre>
 		</dd>
 	
@@ -73,8 +71,8 @@ var person2 = person1;
 
 person2.last = 'Marley';
 
-assert(person1.last === 'Marley', "the original object is changed");
-assert(person1 === person2, "they are the same object");
+assertTripleEqual(person1.last, 'Marley', "the original object is changed");
+assertTripleEqual(person1, person2, "they are the same object");
 </pre>
 		</dd>
 	
@@ -87,8 +85,8 @@ assert(person1 === person2, "they are the same object");
 
 var counter = 0;
 var incVal = increment(counter);
-assert(counter === 0, "primitives are pass-by-value");
-assert(incVal === 1, "returns incremented value");
+assertTripleEqual(counter, 0, "primitives are pass-by-value");
+assertTripleEqual(incVal, 1, "returns incremented value");
 
 
 function reset(statusObj){
@@ -99,17 +97,17 @@ var myStatus = {
   total: 6
 };
 reset(myStatus);
-assert(myStatus.total === 0, "objects are pass-by-reference");
+assertTripleEqual(myStatus.total, 0, "objects are pass-by-reference");
 </pre>
 		</dd>
 	
 		<dt>arguments.js</dt>
 		<dd>
 			<pre>function argumentative(){
-  assert(!(arguments instanceof Array), "'arguments' isn't really an array");
-  assert(typeof arguments.join === 'undefined', "no join method on 'arguments'");
+  assertTripleEqual(arguments instanceof Array, false, "'arguments' isn't really an array");
+  assertTripleEqual(typeof arguments.join, 'undefined', "no join method on 'arguments'");
 
-  assert(arguments.length === 3, "but 'arguments' do have 'length'");
+  assertTripleEqual(arguments.length, 3, "but 'arguments' do have 'length'");
 }
 
 argumentative('foo', 'bar', 'baz');
@@ -144,8 +142,8 @@ var obj2 = {
 
 extend(obj1, obj2);
 
-assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
-assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
+assertDeepEqual(obj1, { obj1Prop: true, obj2Prop: true }, "merges properties onto destination");
+assertDeepEqual(obj2, { obj2Prop: true }, "doesn't modify source object");
 </pre>
 		</dd>
 	
@@ -166,7 +164,7 @@ order.push('before');
 setTimeout(function(){
   order.push('within');
 
-  assert(deepEqual(order, ['before', 'after', 'within']), "timeout callback executed last");
+  assertDeepEqual(order, ['before', 'after', 'within'], "timeout callback executed last");
 }, 0);
 
 order.push('after');
@@ -192,10 +190,10 @@ var $$ = {
 var callbackCalled = false;
 $$.get('http://foo.com/bar.json', function(data){
   callbackCalled = true;
-  assert(data.status === 'ok', "the callback receives the data");
+  assertTripleEqual(data.status, 'ok', "the callback receives the data");
 });
 
-assert(!callbackCalled, "callback doesn't exectute immediately");
+assertTripleEqual(callbackCalled, false, "callback doesn't exectute immediately");
 </pre>
 		</dd>
 	
@@ -217,7 +215,7 @@ var $$ = function(){
 (function($$){
   // $$ is assigned to the argument passed in, which supercedes the local variable above
   $$('foo');
-  assert(aQueryCalled, "aQuery() should have been called");
+  assertTripleEqual(aQueryCalled, true, "aQuery() should have been called");
 })(aQuery);
 </pre>
 		</dd>
@@ -233,8 +231,8 @@ function fn1(){
   return this;
 }
 
-assert(fn1() === global, "functions defined globally have global context");
-assert(global.fn1() === global, "functions defined globally are available on the global object");
+assertTripleEqual(fn1(), global, "functions defined globally have global context");
+assertTripleEqual(global.fn1(), global, "functions defined globally are available on the global object");
 
 
 // effectively the same as above
@@ -242,8 +240,8 @@ global.fn2 = function(){
   return this;
 };
 
-assert(global.fn2() === global, "functions defined on the glboal object have global context");
-assert(fn2() === global, "the global object is inferred when no parent object is specified");
+assertTripleEqual(global.fn2(), global, "functions defined on the glboal object have global context");
+assertTripleEqual(fn2(), global, "the global object is inferred when no parent object is specified");
 
 
 var obj = {
@@ -252,13 +250,13 @@ var obj = {
   }
 };
 
-assert(obj.fn3() === obj, "functions defined on an object have the context of that object");
+assertTripleEqual(obj.fn3(), obj, "functions defined on an object have the context of that object");
 
 
 var fn3 = obj.fn3;
-assert(fn3() === global, "context is dependent on where the function is called, not where it's defined");
+assertTripleEqual(fn3(), global, "context is dependent on where the function is called, not where it's defined");
 
-assert(fn3.call(obj) === obj, "applied context modifies 'this'");
+assertTripleEqual(fn3.call(obj), obj, "applied context modifies 'this'");
 </pre>
 		</dd>
 	
@@ -273,12 +271,12 @@ function printMyVariable(){
 }
 
 // without additional arguments, apply() vs. call() are interchangeable
-assert(printMyVariable() === "I'm global!", "without specifying context");
-assert(printMyVariable.apply(null) === "I'm global!", "using 'null' context");
-assert(printMyVariable.apply(undefined) === "I'm global!", "using 'undefined' context");
-assert(printMyVariable.apply(this) === "I'm global!", "using 'this' context");
+assertTripleEqual(printMyVariable(), "I'm global!", "without specifying context");
+assertTripleEqual(printMyVariable.apply(null), "I'm global!", "using 'null' context");
+assertTripleEqual(printMyVariable.apply(undefined), "I'm global!", "using 'undefined' context");
+assertTripleEqual(printMyVariable.apply(this), "I'm global!", "using 'this' context");
 
-assert(printMyVariable.apply({ myVariable: "I'm local!" }) === "I'm local!", "using object as context");
+assertTripleEqual(printMyVariable.apply({ myVariable: "I'm local!" }), "I'm local!", "using object as context");
 </pre>
 		</dd>
 	
@@ -288,8 +286,8 @@ assert(printMyVariable.apply({ myVariable: "I'm local!" }) === "I'm local!", "us
   return first + ' ' + last + ', M.D.';
 }
 
-assert(title.call(this, 'Michaela', 'Quinn') === 'Michaela Quinn, M.D.', "call() takes individual arguments after the context");
-assert(title.apply(this, ['Michaela', 'Quinn']) === 'Michaela Quinn, M.D.', "apply() takes individual arguments after the context");
+assertTripleEqual(title.call(this, 'Michaela', 'Quinn'), 'Michaela Quinn, M.D.', "call() takes individual arguments after the context");
+assertTripleEqual(title.apply(this, ['Michaela', 'Quinn']), 'Michaela Quinn, M.D.', "apply() takes individual arguments after the context");
 
 // easy to remember - 'a' (in 'apply') is for Array
 </pre>
@@ -314,15 +312,15 @@ function bind(fn, context){
 // alias the function
 var unbound = obj.fullName;
 
-assert(unbound() === 'undefined undefined', "without binding, function calls use the calling scope");
+assertTripleEqual(unbound(), 'undefined undefined', "without binding, function calls use the calling scope");
 
 // bind it to the original context
 var bound = bind(unbound, obj);
 
-assert(typeof bound === 'function', "bind() returns a function");
-assert(bound !== unbound, "returns a new function");
-assert(bound() === 'Bob Hope', "bound function will use the specified context");
-assert(bound.call({}) === 'Bob Hope', "bound function can be called in any context");
+assertTripleEqual(typeof bound, 'function', "bind() returns a function");
+assertTripleEqual(bound === unbound, false, "returns a new function");
+assertTripleEqual(bound(), 'Bob Hope', "bound function will use the specified context");
+assertTripleEqual(bound.call({}), 'Bob Hope', "bound function can be called in any context");
 </pre>
 		</dd>
 	
@@ -336,12 +334,12 @@ assert(bound.call({}) === 'Bob Hope', "bound function can be called in any conte
 var bob = new Person('Bob', 'Hope');
 var sally = new Person('Sally', 'Field');
 
-assert(bob.first === 'Bob', "the public properties are accessible");
+assertTripleEqual(bob.first, 'Bob', "the public properties are accessible");
 
-assert(bob !== sally, "two instances are not the same");
+assertTripleEqual(bob === sally, false, "two instances are not the same");
 
-assert(bob instanceof Person, "'new' creates instance");
-assert(bob instanceof Object, "it's an Object");
+assertTripleEqual(bob instanceof Person, true, "'new' creates instance");
+assertTripleEqual(bob instanceof Object, true, "it's an Object");
 </pre>
 		</dd>
 	
@@ -363,15 +361,15 @@ Person.prototype.title = function(){
 var bruce = new Person('Bruce', 'Wayne');
 var tony = new Person('Tony', 'Stark');
 
-assert(bruce.fullName() === 'Bruce Wayne', "correct fullName for bruce");
-assert(tony.fullName() === 'Tony Stark', "correct fullName for tony");
+assertTripleEqual(bruce.fullName(), 'Bruce Wayne', "correct fullName for bruce");
+assertTripleEqual(tony.fullName(), 'Tony Stark', "correct fullName for tony");
 
-assert(bruce.fullName !== tony.fullName, "functions created in the constructor are unique to each instance");
+assertTripleEqual(bruce.fullName === tony.fullName, false, "functions created in the constructor are unique to each instance");
 
-assert(bruce.title() === 'Mr. Bruce Wayne', "correct title for bruce");
-assert(tony.title() === 'Mr. Tony Stark', "correct title for tony");
+assertTripleEqual(bruce.title(), 'Mr. Bruce Wayne', "correct title for bruce");
+assertTripleEqual(tony.title(), 'Mr. Tony Stark', "correct title for tony");
 
-assert(bruce.title === tony.title, "functions set on the prototype are shared by all instances");
+assertTripleEqual(bruce.title, tony.title, "functions set on the prototype are shared by all instances");
 </pre>
 		</dd>
 	
@@ -383,11 +381,11 @@ assert(bruce.title === tony.title, "functions set on the prototype are shared by
 var myAry = [];
 var myObj = {};
 
-assert(typeof myObj === 'object', "an object is an Object");
-assert(typeof myAry === 'object', "so is an Array");
+assertTripleEqual(typeof myObj, 'object', "an object is an Object");
+assertTripleEqual(typeof myAry, 'object', "so is an Array");
 
-assert(Object.prototype.toString.apply(myObj) === '[object Object]', "Object's toString() acts differently than typeof");
-assert(Object.prototype.toString.apply(myAry) === '[object Array]', "it can distinguish an Array from an Object");
+assertTripleEqual(Object.prototype.toString.apply(myObj), '[object Object]', "Object's toString() acts differently than typeof");
+assertTripleEqual(Object.prototype.toString.apply(myAry), '[object Array]', "it can distinguish an Array from an Object");
 
 // look at _.isArray()
 // http://underscorejs.org/docs/underscore.html
@@ -414,8 +412,8 @@ Car.prototype.numWheels = function(){
 var myVehicle = new Vehicle();
 var myCar = new Car();
 
-assert(myCar.numWheels() === 4, "subclass used its own function definition");
-assert(myVehicle.numWheels() === undefined, "superclass function wasn't overwritten");
+assertTripleEqual(myCar.numWheels(), 4, "subclass used its own function definition");
+assertTripleEqual(myVehicle.numWheels(), undefined, "superclass function wasn't overwritten");
 </pre>
 		</dd>
 	
@@ -434,7 +432,7 @@ app.models.Vehicle = function(){};
 // use stuff from the namespace
 var bob = new app.models.User();
 
-assert(bob instanceof Object, "Objects under a namespace are just Objects");
+assertTripleEqual(bob instanceof Object, true, "Objects under a namespace are just Objects");
 
 // perks:
 // * helps to organize
@@ -461,7 +459,7 @@ namespace('app.views');
 // add a class to it:
 //
 //   app.views.User = function(){};
-//   assert(app.models.User !== app.views.User, "different namespaces don't override each other");
+//   assertTripleEqual(app.models.User === app.views.User, false, "different namespaces don't override each other");
 
 namespace('foo.lib.external');
 // is synonymous to:
@@ -506,11 +504,11 @@ namespace('foo.lib.external');
 
 var tony = new User('tony', '12345');
 
-assert(tony.pass === undefined, "the args aren't accessible");
-assert(tony.password === undefined, "private properties aren't accessible");
+assertTripleEqual(tony.pass, undefined, "the args aren't accessible");
+assertTripleEqual(tony.password, undefined, "private properties aren't accessible");
 
-assert(tony.login('foo') === false, "methods can access private vars");
-assert(tony.login('12345') === true, "methods can access private vars, again");
+assertTripleEqual(tony.login('foo'), false, "methods can access private vars");
+assertTripleEqual(tony.login('12345'), true, "methods can access private vars, again");
 
 // EXERCISE:
 // create a Backbone-like model that has get() and set() methods that work for arbitrary attributes, e.g.
@@ -529,7 +527,7 @@ assert(tony.login('12345') === true, "methods can access private vars, again");
 //   $$.cacheLength() // int (number of selectors in cache)
 
 var $$ = function(selector){
-  assert(this !== $$, "'this' refers to the window/global");
+  assertTripleEqual(this === $$, false, "'this' refers to the window/global");
 
   // check if it's already cached
   var elt = $$._elementCache[selector];
@@ -547,23 +545,23 @@ $$._cacheSize = 0;
 
 // public method
 $$.cacheLength = function(){
-  assert(this === $$, "'this' refers to the parent object, $$");
+  assertTripleEqual(this, $$, "'this' refers to the parent object, $$");
 
   return this._cacheSize;
 };
 
 
-assert(deepEqual($$._elementCache, {}), "private variable '_elementCache' is accessible");
-assert($$._cacheSize === 0, "private variable '_cacheSize' is accessible");
-assert($$.cacheLength() === 0, "cache should be empty to start");
+assertDeepEqual($$._elementCache, {}, "private variable '_elementCache' is accessible");
+assertTripleEqual($$._cacheSize, 0, "private variable '_cacheSize' is accessible");
+assertTripleEqual($$.cacheLength(), 0, "cache should be empty to start");
 
 var elt = $$('#myDiv');
 
-assert($$.cacheLength() === 1, "cache should be incremented after query");
+assertTripleEqual($$.cacheLength(), 1, "cache should be incremented after query");
 
 var sameElt = $$('#myDiv');
 
-assert($$.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+assertTripleEqual($$.cacheLength(), 1, "cache should be not be incremented for a repeated query");
 </pre>
 		</dd>
 	
@@ -599,16 +597,16 @@ var $$ = (function(){
 })();
 
 
-assert($$.elementCache === undefined, "private variables should be undefined");
-assert($$.cacheLength() === 0, "cache should be empty to start");
+assertTripleEqual($$.elementCache, undefined, "private variables should be undefined");
+assertTripleEqual($$.cacheLength(), 0, "cache should be empty to start");
 
 var elt = $$('#myDiv');
 
-assert($$.cacheLength() === 1, "cache should be incremented after query");
+assertTripleEqual($$.cacheLength(), 1, "cache should be incremented after query");
 
 var sameElt = $$('#myDiv');
 
-assert($$.cacheLength() === 1, "cache should be not be incremented for a repeated query");
+assertTripleEqual($$.cacheLength(), 1, "cache should be not be incremented for a repeated query");
 </pre>
 		</dd>
 	
@@ -634,42 +632,44 @@ Person.newKid = function(first, parent1, parent2){
 var jane = new Person('Jane', 'Gordon');
 var dennis = new Person('Dennis', 'Levitt');
 
-assert(jane.newKid === undefined, "class method isn't available on an instance");
-assert(Person.fullName === undefined, "instance method isn't available on the class");
+assertTripleEqual(jane.newKid, undefined, "class method isn't available on an instance");
+assertTripleEqual(Person.fullName, undefined, "instance method isn't available on the class");
 
 var joseph = Person.newKid('Joseph', jane, dennis);
 
-assert(joseph instanceof Person, "the factory method returns a new instance");
-assert(joseph.fullName() === 'Joseph Gordon-Levitt', "assigns the name correctly");
+assertTripleEqual(joseph instanceof Person, true, "the factory method returns a new instance");
+assertTripleEqual(joseph.fullName(), 'Joseph Gordon-Levitt', "assigns the name correctly");
 </pre>
 		</dd>
 	
 		<dt>hoisting.js</dt>
 		<dd>
-			<pre>var fooNotDefined = false;
+			<pre>var isFooDefined;
 try {
-  log(foo);
+  console.log(foo);
+  isFooDefined = true;
 } catch(e){
-  fooNotDefined = true;
+  isFooDefined = false;
 }
 
-assert(fooNotDefined, "non-declared variables will throw errors when called");
-assert(typeof foo === 'undefined', "non-declared variables have a typeof 'undefined'");
+assertTripleEqual(isFooDefined, false, "non-declared variables will throw errors when called");
+assertTripleEqual(typeof foo, 'undefined', "non-declared variables have a typeof 'undefined'");
 
-assert(bar === undefined, "variable declarations get hoisted, but not the assignment");
-assert(typeof bar === 'undefined', "declared (but unset) variables *also* have typeof 'undefined'");
+assertTripleEqual(bar, undefined, "variable declarations get hoisted, but not the assignment");
+assertTripleEqual(typeof bar, 'undefined', "declared (but unset) variables *also* have typeof 'undefined'");
 
 var bar = 'bar';
 
 
-var bazNotDefined = false;
+var isBazDefined;
 try {
-  log(baz);
+  console.log(baz);
+  isBazDefined = true;
 } catch(e){
-  bazNotDefined = true;
+  isBazDefined = false;
 }
 
-assert(bazNotDefined, "hoisting only occurs within a single scope");
+assertTripleEqual(isBazDefined, false, "hoisting only occurs within a single scope");
 
 function testFunc(){
   var baz = 'baz';

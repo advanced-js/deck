@@ -5,8 +5,8 @@ function increment(val){
 
 var counter = 0;
 var incVal = increment(counter);
-assert(counter === 0, "primitives are pass-by-value");
-assert(incVal === 1, "returns incremented value");
+assertTripleEqual(counter, 0, "primitives are pass-by-value");
+assertTripleEqual(incVal, 1, "returns incremented value");
 
 
 function reset(statusObj){
@@ -17,4 +17,4 @@ var myStatus = {
   total: 6
 };
 reset(myStatus);
-assert(myStatus.total === 0, "objects are pass-by-reference");
+assertTripleEqual(myStatus.total, 0, "objects are pass-by-reference");

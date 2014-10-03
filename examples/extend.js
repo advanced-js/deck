@@ -18,5 +18,5 @@ var obj2 = {
 
 extend(obj1, obj2);
 
-assert(deepEqual(obj1, { obj1Prop: true, obj2Prop: true }), "merges properties onto destination");
-assert(deepEqual(obj2, { obj2Prop: true }), "doesn't modify source object");
+assertDeepEqual(obj1, { obj1Prop: true, obj2Prop: true }, "merges properties onto destination");
+assertDeepEqual(obj2, { obj2Prop: true }, "doesn't modify source object");

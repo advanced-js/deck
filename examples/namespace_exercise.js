@@ -15,7 +15,7 @@ namespace('app.views');
 // add a class to it:
 //
 //   app.views.User = function(){};
-//   assert(app.models.User !== app.views.User, "different namespaces don't override each other");
+//   assertTripleEqual(app.models.User === app.views.User, false, "different namespaces don't override each other");
 
 namespace('foo.lib.external');
 // is synonymous to:
