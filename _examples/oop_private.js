@@ -1,3 +1,6 @@
+---
+---
+
 var User = function(username, pass){
   var password = pass;
   this.username = username;

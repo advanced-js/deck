@@ -1,3 +1,6 @@
+---
+---
+
 // NOTE: broken in the deck - run with `node scripts/run_tests.js examples/this.js`
 
 var global = this; // 'window' in the browser

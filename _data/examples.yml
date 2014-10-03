@@ -1,0 +1,39 @@
+# pass by value/reference
+- array_as_object
+- object_literal
+- pass_by_reference
+
+# arguments
+- arguments
+- echo_exercise
+- extend
+
+# async
+- countdown_exercise
+- event_loop
+- callbacks
+
+# variable scope
+- self_executing_functions # re-referenced in modules
+
+# context
+- this
+- apply_context
+- call_vs_apply
+- bind
+
+# OOP
+- oop_basic
+- instance_vs_prototype
+- object_prototype # jump back to array_as_object
+- oop_inheritance
+- namespace
+- namespace_exercise
+- oop_private # related to modules
+
+# other design patterns
+- singleton
+- module # jump back to self_executing_functions and oop_private
+- class_vs_instance_methods
+
+- hoisting

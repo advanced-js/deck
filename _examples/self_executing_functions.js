@@ -1,3 +1,6 @@
+---
+---
+
 // Fake jQuery: aQuery!
 
 var aQueryCalled = false;

@@ -1,3 +1,6 @@
+---
+---
+
 function extend(dest /*, sources */){
   var source, attr;
   for (var i = 1; i < arguments.length; i++){

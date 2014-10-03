@@ -1,3 +1,6 @@
+---
+---
+
 var isFooDefined;
 try {
   console.log(foo);
