@@ -20,6 +20,6 @@ To build the examples as HTML:
 
 ```bash
 bundle
-bundle exec jekyll serve -w
+bundle exec jekyll serve -w --baseurl /
 open http://localhost:4000
 ```
