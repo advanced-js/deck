@@ -1,11 +1,8 @@
-jQuery(document).ready(function(){
-  var source = $('#pre').html().replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
+(function(){
+  var $pre = $("#pre");
+  $pre.hide();
 
-  if ( !source ) {
-    jQuery("#pre").hide();
-  } else {
-    jQuery("#pre").show();
-  }
+  var source = $pre.html().replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
 
   // rewrite all assertDeepEqual()s to show the value + reason in a comment
   var output = Falafel(source, function (node) {
@@ -23,10 +20,10 @@ jQuery(document).ready(function(){
     }
   });
 
-  jQuery("#pre").html( output.toString() ).chili();
+  $pre.html( output.toString() ).chili().show();
 
   // hide the commented values
-  var $values = jQuery('#pre .mlcom');
+  var $values = $pre.find('.mlcom');
   $values.each(function(i, el) {
     var $el = jQuery(el);
     var value = $el.text().replace(/(\/\*|\*\/)/g, '').trim();
@@ -44,4 +41,4 @@ jQuery(document).ready(function(){
       $values.hide();
     }
   });
-});
+}());
