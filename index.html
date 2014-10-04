@@ -33,13 +33,13 @@
 <footer>
   Get the source code <a href="https://github.com/advanced-js/deck">here</a>.  Slides by <a href="http://afeld.me">Aidan Feldman</a>.  Template blatantly stolen from <a href="http://ejohn.org/apps/learn">John Resig</a>.
 </footer>
-<dl style="display: none; ">
+<ul style="display: none;">
 
   {% for example in site.examples %}
-    <dt>{{ example.relative_path }}</dt>
-    <dd>
+    {% assign name = example.relative_path | replace:'_examples/','' | replace:'.js','' %}
+    <li class="{{ name }}">
       <pre>{{ example.content }}</pre>
-    </dd>
+    </li>
   {% endfor %}
 
 </dl>

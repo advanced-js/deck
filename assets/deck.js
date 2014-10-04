@@ -11,11 +11,6 @@ jQuery(document).ready(function(){
     loadSample();
   });
 
-  var stasis = {};
-  for ( var item in window ) {
-    stasis[item] = true;
-  }
-
   var pos;
 
   if ( location.hash ) {
@@ -30,8 +25,9 @@ jQuery(document).ready(function(){
     jQuery("h3").removeClass("large").html("Advanced JavaScript");
     jQuery("#pre").show();
 
-    jQuery("dt").each(function(i, dt){
-      jQuery("<a href='#" + (i+1) + "'>" + (i+1) + ") " + this.innerHTML + "\n</a>").click(function(){
+    jQuery("li").each(function(i, li){
+      var $li = $(this);
+      jQuery("<a href='#" + (i+1) + "'>" + (i+1) + ") " + $li.attr('class') + "\n</a>").click(function(){
         pos = i;
         loadSample();
         return false;
@@ -44,7 +40,7 @@ jQuery(document).ready(function(){
   function loadSample(){
     jQuery("div.buttons").show();
 
-    var source = (jQuery("dd").eq(pos).find("pre").html() || "")
+    var source = (jQuery("li").eq(pos).find("pre").html() || "")
                             .replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
 
     if ( !source ) {
@@ -55,7 +51,7 @@ jQuery(document).ready(function(){
       jQuery("#pre, #cite").show();
     }
 
-    jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("dt").eq(pos).html() );
+    jQuery("h3").html( (source ? "#" + (pos + 1) + ": " : "") + jQuery("li").eq(pos).attr('class') );
     source = source.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
     // rewrite all assertDeepEqual()s to show the value + reason in a comment
@@ -96,7 +92,7 @@ jQuery(document).ready(function(){
       }
     });
 
-    var last = jQuery("dt").length - 1;
+    var last = jQuery("li").length - 1;
 
     if ( pos == 0 )
       jQuery("#prev").css("visibility", "hidden");
