@@ -1,3 +1,6 @@
+---
+---
+
 var myAry = [
   'foo',
   'bar',

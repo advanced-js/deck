@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<h3>{{ page.url | replace:'/examples/','' | replace:'/','' | replace:'_',' ' }}</h3>
+<div class="buttons">
+  {% comment %}
+    Variation of http://stackoverflow.com/a/16732290/358804
+  {% endcomment %}
+  {% assign name = page.url | replace:'/examples/','' | replace:'/','' %}
+  {% for example in site.data.examples %}
+    {% if name == example %}
+      {% unless forloop.first %}
+        {% assign prevIndex = forloop.index0 | minus:1 %}
+        {% assign prev = site.data.examples[prevIndex] %}
+        <a href="{{ site.baseurl }}examples/{{ prev }}">Prev</a>
+      {% endunless %}
+      <a href="{{ site.baseurl }}">Top</a>
+      {% unless forloop.last %}
+        {% assign nextIndex = forloop.index0 | plus:1 %}
+        {% assign next = site.data.examples[nextIndex] %}
+        <a href="{{ site.baseurl }}examples/{{ next }}">Next</a>
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+</div>
+<pre id="pre" class="javascript">{{ content }}</pre>
+
+<link rel="stylesheet" href="{{ site.baseurl }}vendor/recipes.css">
+<script src="{{ site.baseurl }}vendor/jquery.js"></script>
+<script src="{{ site.baseurl }}vendor/jquery.chili.js"></script>
+<script src="{{ site.baseurl }}vendor/recipes.js"></script>
+<script src="{{ site.baseurl }}vendor/falafel.js"></script>
+<script src="{{ site.baseurl }}assets/deck.js"></script>

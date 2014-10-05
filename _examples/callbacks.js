@@ -1,3 +1,6 @@
+---
+---
+
 // fake jQuery
 var $$ = {
   get: function(url, callback){

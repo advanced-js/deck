@@ -1,3 +1,6 @@
+---
+---
+
 // Fake jQuery
 // Usage:
 //   $$('#mySelector') // element

@@ -1,3 +1,6 @@
+---
+---
+
 // remember array_as_object.js?
 // native types have prototypes, too
 

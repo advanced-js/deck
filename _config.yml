@@ -1,0 +1,11 @@
+baseurl: /deck/
+collections:
+  examples:
+    output: true
+    permalink: /examples/:path/
+defaults:
+  -
+    scope:
+      path: "examples"
+    values:
+      layout: "example"

@@ -19,5 +19,7 @@ node scripts/run_tests.js examples/FILENAME.js
 To build the examples as HTML:
 
 ```bash
-node scripts/build.js
+bundle
+bundle exec jekyll serve -w --baseurl /
+open http://localhost:4000
 ```

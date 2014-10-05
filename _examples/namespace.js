@@ -1,3 +1,6 @@
+---
+---
+
 // like Java, but hackier!
 
 // create the namespace

@@ -1,4 +1,8 @@
-function extend(dest /*, sources */){
+---
+---
+
+// function(dest, source, source, ...)
+function extend(dest){
   var source, attr;
   for (var i = 1; i < arguments.length; i++){
     source = arguments[i];

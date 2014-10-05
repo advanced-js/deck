@@ -1,3 +1,6 @@
+---
+---
+
 var Vehicle = function(){};
 
 Vehicle.prototype.numWheels = function(){
