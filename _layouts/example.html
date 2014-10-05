@@ -13,13 +13,13 @@ layout: default
       {% unless forloop.first %}
         {% assign prevIndex = forloop.index0 | minus:1 %}
         {% assign prev = site.data.examples[prevIndex] %}
-        <a id="prev" href="{{ site.baseurl }}examples/{{ prev }}">Prev</a>
+        <a href="{{ site.baseurl }}examples/{{ prev }}">Prev</a>
       {% endunless %}
       <a href="{{ site.baseurl }}">Top</a>
       {% unless forloop.last %}
         {% assign nextIndex = forloop.index0 | plus:1 %}
         {% assign next = site.data.examples[nextIndex] %}
-        <a id="next" href="{{ site.baseurl }}examples/{{ next }}">Next</a>
+        <a href="{{ site.baseurl }}examples/{{ next }}">Next</a>
       {% endunless %}
     {% endif %}
   {% endfor %}
