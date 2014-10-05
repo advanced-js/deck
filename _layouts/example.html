@@ -15,6 +15,7 @@ layout: default
         {% assign prev = site.data.examples[prevIndex] %}
         <a id="prev" href="{{ site.baseurl }}examples/{{ prev }}">Prev</a>
       {% endunless %}
+      <a href="{{ site.baseurl }}">Top</a>
       {% unless forloop.last %}
         {% assign nextIndex = forloop.index0 | plus:1 %}
         {% assign next = site.data.examples[nextIndex] %}
