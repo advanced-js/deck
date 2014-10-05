@@ -43,6 +43,8 @@ function runExercise(filename){
     };
 
     try {
+      // remove YAML metadata
+      code = code.toString().replace(/^---(.|\n)*---\s+/m, '');
       // create new context for each run
       vm.runInNewContext(code, {
         assertTripleEqual: function(actual, expected, msg) {
@@ -66,7 +68,7 @@ var singleFile = process.argv[2];
 if (singleFile){
   runExercise(singleFile);
 } else {
-  var dir = 'examples/',
+  var dir = '_examples/',
     files = fs.readdirSync(dir);
 
   files.forEach(function(file){
@@ -90,5 +92,5 @@ process.on('exit', function(){
 
 
 console.log('Building slides...');
-require('./build');
+// TODO run build
 console.log('SUCCESS');
