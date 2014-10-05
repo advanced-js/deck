@@ -90,7 +90,4 @@ process.on('exit', function(){
   console.log('\nPassed: ' + numPasses + '  Failed: ' + numFailures);
 });
 
-
-console.log('Building slides...');
-// TODO run build
-console.log('SUCCESS');
+console.log('TEST RUN SUCCESS');
