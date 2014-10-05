@@ -2,7 +2,9 @@
   var $pre = $("#pre");
   $pre.hide();
 
-  var source = $pre.html().replace(/(^|\n) /g, "$1").replace(/ ($|\n)/g, "$1");
+  var source = $pre.text().
+    replace(/(^|\n) /g, "$1").
+    replace(/ ($|\n)/g, "$1");
 
   // rewrite all assertDeepEqual()s to show the value + reason in a comment
   var output = Falafel(source, function (node) {
