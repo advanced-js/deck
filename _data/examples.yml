@@ -10,6 +10,7 @@
 - extend
 
 # async
+- custom_setinterval_exercise
 - countdown_exercise
 - event_loop
 - callbacks
