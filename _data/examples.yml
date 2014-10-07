@@ -2,6 +2,7 @@
 - array_as_object
 - object_literal
 - pass_by_reference
+- multi_reset
 
 # arguments
 - arguments
