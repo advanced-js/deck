@@ -45,6 +45,9 @@ function runExercise(filename){
     try {
       // remove YAML metadata
       code = code.toString().replace(/^---(.|\n)*---\s+/m, '');
+      // pretend the window object is available
+      code = "var window = this;\n" + code;
+
       // create new context for each run
       vm.runInNewContext(code, {
         assertTripleEqual: function(actual, expected, msg) {
