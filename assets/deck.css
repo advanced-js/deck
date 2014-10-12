@@ -17,6 +17,7 @@ body {
   margin: 0;
   border: 0;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 h1 {
