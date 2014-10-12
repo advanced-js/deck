@@ -5,7 +5,11 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Advanced JavaScript - Aidan Feldman</title>
+    <title>
+      {% unless page.url == '/index.html' %}
+        {{ page.url | replace:'/examples/','' | replace:'/','' | replace:'_',' ' }} -
+      {% endunless %}
+      Advanced JavaScript</title>
     <link rel="stylesheet" href="{{ site.baseurl }}assets/deck.css">
     <script type="text/javascript">
       var _gaq = _gaq || [];
