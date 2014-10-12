@@ -37,11 +37,11 @@
 - oop_inheritance
 - namespace
 - namespace_exercise
+- class_vs_instance_methods
 - oop_private # related to modules
 
 # other design patterns
 - singleton
 - module # jump back to self_executing_functions and oop_private
-- class_vs_instance_methods
 
 - hoisting
