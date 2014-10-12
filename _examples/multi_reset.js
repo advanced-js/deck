@@ -2,14 +2,14 @@
 ---
 
 function reset(statusObj){
- statusObj.counter = 0;
+  statusObj.counter = 0;
 }
 
 var myStatus1 = {
- counter: 6
+  counter: 6
 };
 var myStatus2 = {
- counter: 6
+  counter: 6
 };
 
 reset(myStatus1);
