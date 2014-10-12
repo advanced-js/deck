@@ -17,6 +17,8 @@
 - callbacks
 
 # variable scope
+- globals
+- locals
 - masking
 - self_executing_functions # re-referenced in modules
 

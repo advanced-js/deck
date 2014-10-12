@@ -1,17 +1,13 @@
 ---
 ---
 
-var myGlobal = "I'm global";
-
 (function(){
   var myLocal = "I'm local";
-  window.anotherGlobal = "I'm also global";
-  // ...
+  window.myGlobal = "I'm global";
 })();
 
 assertTripleEqual(window.myGlobal, "I'm global");
-assertTripleEqual(window.anotherGlobal, "I'm also global");
-assertTripleEqual(window.myLocal, undefined);
+assertTripleEqual(window.myLocal, undefined, "local variables never get assigned to the global object");
 
 
 // look at usage for jQuery Plugins:
