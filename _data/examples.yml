@@ -26,7 +26,8 @@
 
 # OOP
 - oop_basic
-- instance_vs_prototype
+- instance_methods
+- prototype
 - native_prototype # jump back to array_as_object
 - oop_inheritance
 - namespace
