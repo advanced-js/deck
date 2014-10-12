@@ -10,3 +10,7 @@ function masker(myVar){
 masker("I'm the argument");
 
 assertTripleEqual(myVar, "I'm the global", "outer variable remains unchanged");
+
+
+// look at usage for jQuery Plugins:
+// http://learn.jquery.com/plugins/basic-plugin-creation/#protecting-the-alias-and-adding-scope
