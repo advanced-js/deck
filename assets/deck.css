@@ -1,10 +1,52 @@
-body { background: #222; color: #FFF; font-family: Helvetica, Arial; font-size: 16px; margin: 0; }
-#pre { font-size: 20px; width: 100%; min-height: 425px; font-family: Monaco, Courier New; background: #000; color: #FFF; overflow: auto; margin: 0; border: 0; padding: 10px; }
-h3 { font-size: 24px; padding: 8px; margin-bottom: 5px; }
-h3.large { width: 100%; font-size: 48px; text-align: center; }
-div.buttons { position: absolute; top: 12px; right: 12px; }
-a { color: #EEE; text-decoration: none; border-bottom: 1px solid #EEE; }
-footer { padding: 25px 8px; text-align: center; }
+body {
+  background: #222;
+  color: #FFF;
+  font-family: Helvetica, Arial;
+  font-size: 16px;
+  margin: 0;
+}
+
+#pre {
+  font-size: 20px;
+  width: 100%;
+  min-height: 425px;
+  font-family: Monaco, Courier New;
+  background: #000;
+  color: #FFF;
+  overflow: auto;
+  margin: 0;
+  border: 0;
+  padding: 10px;
+}
+
+h3 {
+  font-size: 24px;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+h3.large {
+  width: 100%;
+  font-size: 48px;
+  text-align: center;
+}
+
+div.buttons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+a {
+  color: #EEE;
+  text-decoration: none;
+  border-bottom: 1px solid #EEE;
+}
+
+footer {
+  padding: 25px 8px;
+  text-align: center;
+}
 
 .mlcom {
   position: relative;
