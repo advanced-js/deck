@@ -21,6 +21,7 @@
 - globals
 - locals
 - self_executing_functions # re-referenced in modules
+- self_executing_with_arguments
 - masking
 
 # context
