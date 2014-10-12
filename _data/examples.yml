@@ -1,6 +1,7 @@
-# pass by value/reference
 - array_as_object
-- object_literal
+
+# pass by value/reference
+- aliasing
 - pass_by_value
 - pass_by_reference
 - multi_reset
