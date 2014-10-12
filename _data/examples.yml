@@ -17,6 +17,7 @@
 - callbacks
 
 # variable scope
+- masking
 - self_executing_functions # re-referenced in modules
 
 # context

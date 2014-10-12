@@ -1,21 +1,18 @@
 ---
 ---
 
-// Fake jQuery: aQuery!
+var myGlobal = "I'm global";
 
-var aQueryCalled = false;
+(function(){
+  var myLocal = "I'm local";
+  window.anotherGlobal = "I'm also global";
+  // ...
+})();
 
-var aQuery = function(){
-  aQueryCalled = true;
-};
+assertTripleEqual(window.myGlobal, "I'm global");
+assertTripleEqual(window.anotherGlobal, "I'm also global");
+assertTripleEqual(window.myLocal, undefined);
 
-var $$ = function(){
-  throw new Error("outer $$() should not be called");
-};
 
-// this technique is used for jQuery plugins, where there might be other libraries (e.g. Prototype) that use the dollar sign variable
-(function($$){
-  // $$ is assigned to the argument passed in, which supercedes the local variable above
-  $$('foo');
-  assertTripleEqual(aQueryCalled, true, "aQuery() should have been called");
-})(aQuery);
+// look at usage for jQuery Plugins:
+// http://learn.jquery.com/plugins/basic-plugin-creation/#protecting-the-alias-and-adding-scope
