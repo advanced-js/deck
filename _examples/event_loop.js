@@ -1,7 +1,7 @@
 ---
 ---
 
-// statements execute in order, except when there is a call that is asynchronous
+// procedural statements execute in order, except when there is a call that is asynchronous
 
 var order = [];
 
@@ -11,8 +11,6 @@ setTimeout(function(){
   order.push('within');
 
   assertDeepEqual(order, ['before', 'after', 'within'], "timeout callback executed last");
-}, 0);
+}, 100);
 
 order.push('after');
-
-// procedural statements executed in order, and async functions are queued in event loop
