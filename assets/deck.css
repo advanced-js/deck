@@ -19,19 +19,13 @@ body {
   padding: 10px;
 }
 
-h3 {
+h1 {
   font-size: 24px;
   padding: 8px;
   margin-bottom: 5px;
 }
 
-h3.large {
-  width: 100%;
-  font-size: 48px;
-  text-align: center;
-}
-
-div.buttons {
+.buttons {
   position: absolute;
   top: 12px;
   right: 12px;
