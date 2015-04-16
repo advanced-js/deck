@@ -1,4 +1,7 @@
 (function(){
+  // http://codegolf.stackexchange.com/a/480
+  var URL_REGEX = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)\b/g;
+
   var $pre = $("#pre");
   $pre.hide();
 
@@ -23,6 +26,15 @@
   });
 
   $pre.html( output.toString() ).chili().show();
+
+  // auto-link URLs
+  var $comments = $pre.find('.com');
+  $comments.each(function(i, el) {
+    var $el = jQuery(el);
+    var text = $el.text();
+    text = text.replace(URL_REGEX, '<a href="$1" target="_blank">$1</a>').trim();
+    $el.html(text);
+  });
 
   // hide the commented values
   var $values = $pre.find('.mlcom');
