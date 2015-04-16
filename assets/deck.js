@@ -2,6 +2,26 @@
   // http://codegolf.stackexchange.com/a/480
   var URL_REGEX = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)\b/g;
 
+  var handleKeyDown = function(e){
+    // TODO use value from _config.yml
+    var baseurl = '/deck/';
+
+    switch (e.which) {
+      case 37:
+        // left arrow
+        window.location = $('.js-prev').attr('href') || baseurl;
+        break;
+      case 38:
+        // up arrow
+        window.location = baseurl;
+        break;
+      case 39:
+        // right arrow
+        window.location = $('.js-next').attr('href') || baseurl;
+        break;
+    }
+  };
+
   var isAssert = function(node) {
     return (
       node.type === 'CallExpression' &&
@@ -82,30 +102,7 @@
   var $values = hideCommentedValues($pre);
 
   var $doc = $(document);
-
-  $doc.on('keydown', function(e){
-    var href;
-
-    switch (e.which) {
-      case 37:
-        // left arrow
-        href = $('.js-prev').attr('href');
-        break;
-      case 38:
-        // up arrow
-        // TODO use baseurl
-        href = '/deck/';
-        break;
-      case 39:
-        // right arrow
-        href = $('.js-next').attr('href');
-        break;
-    }
-
-    if (href) {
-      window.location = href;
-    }
-  });
+  $doc.on('keydown', handleKeyDown);
 
   // hide answers when code is copied. ideally 'user-select: none' would be used, but
   // https://bugs.webkit.org/show_bug.cgi?id=80159
