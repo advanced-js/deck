@@ -1,12 +1,8 @@
 ---
 ---
 
-var words = [
-  'foo',
-  'bar',
-  'baz'
-];
 var properties = {};
+var words = [];
 
 assertTripleEqual(typeof properties, 'object', "an object is an Object");
 assertTripleEqual(typeof words, 'object', "so is an Array");
