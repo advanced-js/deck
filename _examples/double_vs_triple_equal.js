@@ -12,3 +12,4 @@ assertTripleEqual(null === undefined, false, "triple-equals does strict type che
 
 assertTripleEqual({} == {}, false);
 assertTripleEqual({} === {}, false);
+// Why?
