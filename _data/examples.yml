@@ -16,8 +16,7 @@
 - extend
 
 # async
-- countdown_with_timeout_exercise
-- countdown_with_interval_exercise
+- countdown_exercise
 - custom_setinterval_exercise
 - event_loop
 - callbacks
