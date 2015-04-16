@@ -62,6 +62,7 @@
       var $el = jQuery(el);
       hideCommentedValue($el);
     });
+    return $values;
   };
 
 
@@ -78,7 +79,7 @@
     show();
 
   autoLinkCommentUrls($pre);
-  hideCommentedValues($pre);
+  var $values = hideCommentedValues($pre);
 
   // hide answers when code is copied. ideally 'user-select: none' would be used, but
   // https://bugs.webkit.org/show_bug.cgi?id=80159
