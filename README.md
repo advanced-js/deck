@@ -2,7 +2,7 @@
 
 All the magic functions seen in the examples are defined in [helpers.js](assets/helpers.js).
 
-## Building [![Build Status](https://travis-ci.org/advanced-js/deck.svg?branch=master)](https://travis-ci.org/advanced-js/deck)
+## Building [![Build Status](https://travis-ci.org/advanced-js/deck.svg?branch=gh-pages)](https://travis-ci.org/advanced-js/deck)
 
 [Node.js](http://nodejs.org) is required (tested w/ Node v0.10.2).  To run the `examples/`:
 
