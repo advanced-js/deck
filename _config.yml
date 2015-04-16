@@ -3,6 +3,8 @@ collections:
   examples:
     output: true
     permalink: /examples/:path/
+exclude:
+  - vendor
 defaults:
   -
     scope:
