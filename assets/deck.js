@@ -81,9 +81,35 @@
   autoLinkCommentUrls($pre);
   var $values = hideCommentedValues($pre);
 
+  var $doc = $(document);
+
+  $doc.on('keydown', function(e){
+    var href;
+
+    switch (e.which) {
+      case 37:
+        // left arrow
+        href = $('.js-prev').attr('href');
+        break;
+      case 38:
+        // up arrow
+        // TODO use baseurl
+        href = '/deck/';
+        break;
+      case 39:
+        // right arrow
+        href = $('.js-next').attr('href');
+        break;
+    }
+
+    if (href) {
+      window.location = href;
+    }
+  });
+
   // hide answers when code is copied. ideally 'user-select: none' would be used, but
   // https://bugs.webkit.org/show_bug.cgi?id=80159
-  $(document).on('selectionchange', function(e){
+  $doc.on('selectionchange', function(e){
     var selection = window.getSelection();
     if (selection.isCollapsed) {
       $values.show();
