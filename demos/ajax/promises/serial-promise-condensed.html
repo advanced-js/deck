@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>AJAX example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+      $.get('example.json').
+        then(function(data) {
+          console.log('first fetched!');
+          return $.get('example2.json?value=' + data.value);
+        }).
+        then(function(){
+          console.log('both fetched!');
+        });
+    </script>
+  </head>
+  <body>
+    See console.
+  </body>
+</html>
