@@ -3,17 +3,20 @@
     <title>AJAX example</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
-      var promise = $.get('exaasdfsample.json');
-      promise.then(
-        // success
-        function(data){
-          console.log(data.message);
-        },
-        // fail
-        function(){
-          console.log('fail!');
-        }
-      );
+      $.get('nonexistent.json').
+        then(function(){
+          return $.get('example.json');
+        }).
+        then(
+          // success
+          function(data){
+            console.log(data.message);
+          },
+          // fail
+          function(){
+            console.log('fail!');
+          }
+        );
     </script>
   </head>
   <body>
