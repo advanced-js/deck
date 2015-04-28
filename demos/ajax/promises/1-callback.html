@@ -8,13 +8,13 @@
       //   $ python -m SimpleHTTPServer
       //   # open http://localhost:8000/1-callback.html
       var myCallback = function(data){
-        $('body').text(data.message);
+        console.log(data.message);
       };
 
       $.getJSON('example.json', myCallback);
     </script>
   </head>
   <body>
-    Loading...
+    See console.
   </body>
 </html>

@@ -10,11 +10,11 @@
       var promise = $.getJSON('example.json');
       promise.then(function(data){
         var message = data.message;
-        $('body').text(message);
+        console.log(message);
       });
     </script>
   </head>
   <body>
-    Loading...
+    See console.
   </body>
 </html>
