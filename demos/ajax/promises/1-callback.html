@@ -6,10 +6,10 @@
       // to run:
       //   $ cd <this directory>
       //   $ python -m SimpleHTTPServer
-      //   $ open http://localhost:8000/1-callback.html
+      //   # open http://localhost:8000/1-callback.html
       var myCallback = function(data){
         $('body').text(data.message);
-      }
+      };
 
       $.getJSON('example.json', myCallback);
     </script>

@@ -6,10 +6,9 @@
       // to run:
       //   $ cd <this directory>
       //   $ python -m SimpleHTTPServer
-      //   $ open http://localhost:8000/2-promise.html
+      //   # open http://localhost:8000/2-promise.html
       var promise = $.getJSON('example.json');
       promise.then(function(data){
-        
         var message = data.message;
         $('body').text(message);
       });
