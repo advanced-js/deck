@@ -3,7 +3,7 @@
     <title>AJAX example</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
-      var promise = $.getJSON('example.json');
+      var promise = $.get('example.json');
       promise.then(function(data){
         var message = data.message;
         console.log(message);

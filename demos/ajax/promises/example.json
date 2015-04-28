@@ -1,4 +1,5 @@
 {
   "message": "Hello World",
-  "status": "OK"
+  "status": "OK",
+  "value": 42
 }

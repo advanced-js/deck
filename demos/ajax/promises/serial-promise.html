@@ -7,7 +7,7 @@
 
       var promiseAll = promise1.then(function(data) {
         console.log('first fetched!');
-        var promise2 = $.get('example2.json?status=' + data.status);
+        var promise2 = $.get('example2.json?value=' + data.value);
         return promise2;
       });
 

@@ -3,18 +3,12 @@
     <title>AJAX example</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
-      $.ajax({
-        url: 'example.json',
-        success: function(data1){
-          console.log('example.json fetched: ' + data1.message);
+      $.get('example.json', function(data1){
+        console.log('first fetched!');
 
-          $.ajax({
-            url: 'example2.json',
-            success: function(data2){
-              console.log('example2.json fetched: ' + data2.message);
-            }
-          });
-        }
+        $.get('example2.json?value=' + data1.value, function(){
+          console.log('both fetched!');
+        });
       });
     </script>
   </head>
