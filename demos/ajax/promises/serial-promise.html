@@ -4,8 +4,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
       var promise1 = $.get('example.json');
-      var promise2 = $.get('example2.json');
-      var promiseAll = $.when(promise1, promise2);
+
+      var promiseAll = promise1.then(function(data) {
+        console.log('first fetched!');
+        var promise2 = $.get('example2.json?status=' + data.status);
+        return promise2;
+      });
 
       promiseAll.then(function(){
         console.log('both fetched!');
