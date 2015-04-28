@@ -7,3 +7,12 @@ cd <this directory>
 python -m SimpleHTTPServer
 open http://localhost:8000/FILENAME.html
 ```
+
+Go through them in this order:
+
+1. [simple callback](simple-callback.html)
+1. [simple promise](simple-promise.html)
+1. [serial callback](serial-callback.html)
+1. [parallel promise](parallel-promise.html)
+1. [fail](fail.html)
+1. [pipe](pipe.html)
