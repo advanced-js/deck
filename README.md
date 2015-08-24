@@ -1,6 +1,6 @@
 # [Advanced JavaScript](https://github.com/advanced-js/syllabus) slide deck
 
-All the magic functions seen in the examples are defined in [helpers.js](assets/helpers.js).
+All the magic functions seen in the examples are defined in [`scripts/run_tests.js`](scripts/run_tests.js).
 
 ## Building [![Build Status](https://travis-ci.org/advanced-js/deck.svg?branch=master)](https://travis-ci.org/advanced-js/deck)
 
