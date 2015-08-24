@@ -38,6 +38,10 @@ a {
   border-bottom: 1px solid #EEE;
 }
 
+.example-content img {
+  max-width: 100%;
+}
+
 footer {
   padding: 25px 8px;
   text-align: center;
