@@ -1,10 +1,12 @@
+---
+---
+
 (function(){
   // http://codegolf.stackexchange.com/a/480
   var URL_REGEX = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)\b/g;
 
   var handleKeyDown = function(e){
-    // TODO use value from _config.yml
-    var baseurl = '/deck/';
+    var baseurl = '{{ site.baseurl }}';
 
     switch (e.which) {
       case 37:
