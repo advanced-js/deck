@@ -11,14 +11,17 @@
     switch (e.which) {
       case 37:
         // left arrow
+        e.preventDefault();
         window.location = $('.js-prev').attr('href') || baseurl;
         break;
       case 38:
         // up arrow
+        e.preventDefault();
         window.location = baseurl;
         break;
       case 39:
         // right arrow
+        e.preventDefault();
         window.location = $('.js-next').attr('href') || baseurl;
         break;
     }
