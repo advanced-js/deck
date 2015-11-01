@@ -15,6 +15,7 @@ The browser has built-in ways to do AJAX, but for simplicity, we will just use j
 
 ## Additional resources
 
+* [Discover DevTools: Network tab](http://discover-devtools.codeschool.com/chapters/5?locale=en)
 * [jQuery Promises example](promises/)
 * [Backbone example](backbone/) ([live demo](http://advanced-js.github.io/deck/demos/ajax/backbone/))
 * http://www.w3schools.com/jquery/jquery_ajax_intro.asp
