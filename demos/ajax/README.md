@@ -13,6 +13,10 @@ The browser has built-in ways to do AJAX ([`XMLHttpRequest`](https://developer.m
 1. **See:** [The JSONP demo](jsonp.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/jsonp.html))
 1. **Do:** The [Mashup](https://github.com/advanced-js/mashup) project, to get practice
 
+## REST
+
+You may have heard of "RESTful APIs" before, which (loosely) means that the URLs (a.k.a. endpoints) and HTTP methods they support have a semantic meaning about the data that is being transferred, and the action that's being performed. For example, `GET /articles` should return a list of articles. `POST /articles` should create a new article. `POST /stuff`, which could create articles or users, or retrieve comments, would _not_ be a good example of RESTful API design.
+
 ## Additional resources
 
 * [Discover DevTools: Network tab](http://discover-devtools.codeschool.com/chapters/5?locale=en)
