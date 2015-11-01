@@ -5,7 +5,7 @@ AJAX allows you to retrieve data to use in your frontend code, whether it's comi
 1. **See:** [An example JSON file](simple/example.json)
 1. **Read:** [_JSON: What It Is, How It Works, & How to Use It_](http://www.copterlabs.com/blog/json-what-it-is-how-it-works-how-to-use-it/)
 
-The browser has built-in ways to do AJAX, but for simplicity, we will just use jQuery, which normalizes the behavior between browsers. While AJAX can be used to send or receive data, we will just worry about the latter for now (via [`$.get()`](https://api.jquery.com/jquery.get/), and maybe [`$.ajax()`](https://api.jquery.com/jQuery.ajax/)).
+The browser has built-in ways to do AJAX ([`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest), more recently [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)), but for simplicity, we will just use jQuery, which normalizes the behavior between browsers. While AJAX can be used to send or receive data, we will just worry about the latter for now (via [`$.get()`](https://api.jquery.com/jquery.get/), and maybe [`$.ajax()`](https://api.jquery.com/jQuery.ajax/)).
 
 1. **See:** [The simple JSON demo](simple/)
 1. **Read:** [jQuery's AJAX tutorial](http://learn.jquery.com/ajax/)
