@@ -10,10 +10,11 @@ The browser has built-in ways to do AJAX, but for simplicity, we will just use j
 1. **See:** [The simple JSON demo](simple/)
 1. **Read:** [jQuery's AJAX tutorial](http://learn.jquery.com/ajax/)
 1. **See:** [The Instagram API demo](instagram/)
+1. **See:** [The JSONP demo](jsonp.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/jsonp.html))
 1. **Do:** The [Mashup](https://github.com/advanced-js/mashup) project, to get practice
 
 ## Additional resources
 
 * [jQuery Promises example](promises/)
-* [Backbone example](backbone/)
+* [Backbone example](backbone/) ([live demo](http://advanced-js.github.io/deck/demos/ajax/backbone/))
 * http://www.w3schools.com/jquery/jquery_ajax_intro.asp

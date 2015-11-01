@@ -6,14 +6,14 @@ Demonstrates how Promises can be used to simplify async operations.
 
 Next, go through the examples in this order:
 
-1. [simple callback](simple-callback.html)
-1. [simple promise](simple-promise.html)
-1. [serial callback](serial-callback.html)
-1. [serial promise (condensed)](serial-promise-condensed.html)
-1. [serial promise](serial-promise.html)
-1. [parallel promise](parallel-promise.html)
-1. [fail](fail.html)
-1. [pipe](pipe.html)
+1. [simple callback](simple-callback.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/simple-callback.html))
+1. [simple promise](simple-promise.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/simple-promise.html))
+1. [serial callback](serial-callback.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/serial-callback.html))
+1. [serial promise (condensed)](serial-promise-condensed.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/serial-promise-condensed.html))
+1. [serial promise](serial-promise.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/serial-promise.html))
+1. [parallel promise](parallel-promise.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/parallel-promise.html))
+1. [fail](fail.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/fail.html))
+1. [pipe](pipe.html) ([live demo](http://advanced-js.github.io/deck/demos/ajax/promises/pipe.html))
 
 ## Running locally
 
