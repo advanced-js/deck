@@ -42,6 +42,7 @@
 - native_prototype # jump back to array_as_object
 - oop_inheritance
 - inheritance_diagram
+- oop_super
 - namespace
 - namespace_exercise
 - class_vs_instance_methods
