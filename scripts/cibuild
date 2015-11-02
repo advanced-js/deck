@@ -2,7 +2,6 @@
 
 set -e
 
-bundle
 bundle exec jekyll build
 
 node scripts/run_tests.js
